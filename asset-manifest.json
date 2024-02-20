@@ -1,13 +1,19 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.07d3183d.js",
+    "main.js": "/VocabBuilder/static/js/main.9baa9763.js",
+    "static/media/illustration.png": "/VocabBuilder/static/media/illustration.0f2a366b680ee26845ab.png",
     "index.html": "/VocabBuilder/index.html",
+    "static/media/CraftworkHome.svg": "/VocabBuilder/static/media/CraftworkHome.e424bad5f769d976016f76435a0304d0.svg",
+    "static/media/Craftwork.svg": "/VocabBuilder/static/media/Craftwork.cedd716bc721d90a6334e7a6e2011a34.svg",
+    "static/media/Nav.svg": "/VocabBuilder/static/media/Nav.424592733778a4d52889214303e00fd1.svg",
+    "static/media/gridicons_user-2.svg": "/VocabBuilder/static/media/gridicons_user-2.981ca9eff9c9adc8a186196c7717e98e.svg",
+    "static/media/x-modal.svg": "/VocabBuilder/static/media/x-modal.1449c9ac645c58ae0b645a33f13d095b.svg",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.07d3183d.js.map": "/VocabBuilder/static/js/main.07d3183d.js.map"
+    "main.9baa9763.js.map": "/VocabBuilder/static/js/main.9baa9763.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.07d3183d.js"
+    "static/js/main.9baa9763.js"
   ]
 }
