@@ -1,16 +1,35 @@
+import GlobalStyled from "createGlobalStyle/createGlobalStyle.styled";
+import Layout from "layout/layout";
+import DictionaryPage from "pages/dictionary/dictionaryPage";
+import TrainingPage from "pages/training/trainingPage";
+import HomePage from "pages/home/homePage";
+import RecommendPage from "pages/recommend/recommendPage";
+
+import { Suspense } from "react";
+import { Toaster } from "react-hot-toast";
+import { Navigate, Route, Routes } from "react-router-dom";
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <>
+      {/* {isFetchingCurrentUser ? (
+        <h1>...Loading</h1>
+      ) : ( */}
+      <GlobalStyled />
+      <Suspense fallback={<p>Загружаем...</p>}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index exact element={<HomePage />} />
+            <Route path="dictionary" element={<DictionaryPage />} />
+
+            <Route path="recommend" element={<RecommendPage />} />
+            <Route path="training" element={<TrainingPage />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Route>
+        </Routes>
+      </Suspense>
+      {/* )} */}
+      <Toaster />
+    </>
   );
 };
