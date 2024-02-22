@@ -24,11 +24,23 @@ export default function Layout() {
           <Logo />
           <h2>VocabBuilder</h2>
         </NavLink>
-        <div className="NavigationContainer">
-          <NavLink to="/dictionary">Dictionary</NavLink>
-          <NavLink to="/recommend">Recommend</NavLink>
-          <NavLink to="/training">Training</NavLink>
-        </div>
+        <ul className="NavigationContainer">
+          <li>
+            <NavLink className="NavElement" to="/dictionary">
+              Dictionary
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="NavElement" to="/recommend">
+              Recommend
+            </NavLink>
+          </li>
+          <li>
+            <NavLink className="NavElement" to="/training">
+              Training
+            </NavLink>
+          </li>
+        </ul>
         <div className="RightSideHeader">
           <div className="UserContainer">
             <span className="UserImag">

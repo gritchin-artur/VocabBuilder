@@ -12,6 +12,7 @@ export const HomePageContainer = styled.div`
     display: flex;
     gap: 16px;
     align-items: center;
+    text-decoration: none;
   }
 
   .LogoTitle {

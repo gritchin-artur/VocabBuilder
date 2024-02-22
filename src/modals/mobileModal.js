@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
 import { closeModalMobile } from "../redux/modals/modal-slice";
 import { BackdropModalStyle } from "./mobileModal.styled";
+import { ReactComponent as ButtonClose } from "../img/x-modal.svg";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -42,18 +43,25 @@ export default function MobileModal() {
     isMobileModalOpen && (
       <BackdropModalStyle onClick={handleBackdropClick}>
         <div className="ModalDiv">
-          <div>
-            <button className="ButtonClose" onClick={handleClickClose} />
+          <div className="HeaderOfModal">
+            <div className="UserContainer"></div>
+            <ButtonClose className="ButtonClose" onClick={handleClickClose} />
           </div>
-          <ul>
+          <ul className="NavList">
             <li>
-              <NavLink to="/dictionary">Dictionary</NavLink>
+              <NavLink className="NavElement" to="/dictionary">
+                Dictionary
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/recommend">Recommend</NavLink>
+              <NavLink className="NavElement" to="/recommend">
+                Recommend
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/training">Training</NavLink>
+              <NavLink className="NavElement" to="/training">
+                Training
+              </NavLink>
             </li>
           </ul>
           <div className="Img" />

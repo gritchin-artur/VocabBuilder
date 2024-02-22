@@ -8,6 +8,7 @@ import RecommendPage from "pages/recommend/recommendPage";
 import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
+import { RegisterPage } from "pages/registerPage/registerPage";
 
 export const App = () => {
   return (
@@ -24,6 +25,8 @@ export const App = () => {
 
             <Route path="recommend" element={<RecommendPage />} />
             <Route path="training" element={<TrainingPage />} />
+            <Route path="register" element={<RegisterPage />} />
+            <Route path="login" element={<TrainingPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
