@@ -12,7 +12,7 @@ export const MainContainer = styled.div`
   .NavigationContainer {
     display: none;
 
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 1440px) {
       display: flex;
       gap: 28px;
     }
@@ -68,7 +68,7 @@ export const MainContainer = styled.div`
 
   .ButtonBurger {
     margin-left: 8px;
-    @media only screen and (min-width: 768px) {
+    @media only screen and (min-width: 1440px) {
       display: none;
     }
   }
