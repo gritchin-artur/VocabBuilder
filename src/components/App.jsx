@@ -9,6 +9,7 @@ import { Suspense } from "react";
 import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { RegisterPage } from "pages/registerPage/registerPage";
+import { LogInPage } from "pages/logInPage/logInPage";
 
 export const App = () => {
   return (
@@ -22,11 +23,10 @@ export const App = () => {
           <Route path="/" element={<Layout />}>
             <Route index exact element={<HomePage />} />
             <Route path="dictionary" element={<DictionaryPage />} />
-
             <Route path="recommend" element={<RecommendPage />} />
             <Route path="training" element={<TrainingPage />} />
             <Route path="register" element={<RegisterPage />} />
-            <Route path="login" element={<TrainingPage />} />
+            <Route path="login" element={<LogInPage />} />
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>

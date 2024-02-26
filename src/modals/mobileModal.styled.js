@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Img from "../img/illustration.png";
+import Img from "../img/registration-mobile.png";
 import X from "../img/x-modal.svg";
 
 export const BackdropModalStyle = styled.div`

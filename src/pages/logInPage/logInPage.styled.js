@@ -3,7 +3,7 @@ import vector from "../../img/Vector-min.jpg";
 import mobileImg from "../../img/registration-mobile.png";
 import desctopImg from "../../img/registration-desctop.png";
 
-export const RegisterPageContainer = styled.div`
+export const LogInPageContainer = styled.div`
   display: grid;
   justify-content: center;
 
@@ -24,6 +24,7 @@ export const RegisterPageContainer = styled.div`
   }
 
   .ImgContainer {
+    order: 1;
     display: grid;
     justify-content: center;
 
@@ -50,6 +51,8 @@ export const RegisterPageContainer = styled.div`
   }
 
   .FormContainer {
+    margin-top: 40px;
+    order: 3;
     padding: 15px 30px;
     border-radius: 25px 25px 0 0;
     background: rgba(133, 170, 159, 0.1);
@@ -135,32 +138,29 @@ export const RegisterPageContainer = styled.div`
     }
   }
 
-  .NavLogIn {
-    justify-content: center;
-    display: flex;
-    margin-top: 32px;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 150%;
-    text-decoration: underline;
-    text-decoration-skip-ink: none;
-    color: rgba(18, 20, 23, 0.5);
-  }
-
   .SkilsList {
-    display: none;
+    margin-top: 16px;
+    order: 2;
+    display: flex;
+    justify-content: center;
+    & li {
+      display: inline-block;
+      margin-right: 7px;
+    }
+
+    & li:not(:last-child)::after {
+      content: "·";
+      margin-left: 7px;
+    }
 
     @media only screen and (min-width: 768px) {
-      display: flex;
-      justify-content: center;
-
+      margin-top: 0px;
+      order: 3;
       & li {
-        display: inline-block;
         margin-right: 15px;
       }
 
       & li:not(:last-child)::after {
-        content: "·";
         margin-left: 15px;
       }
     }
@@ -172,9 +172,13 @@ export const RegisterPageContainer = styled.div`
 
   .Skil {
     font-weight: 400;
-    font-size: 22px;
-    line-height: 150%;
+    font-size: 14px;
     text-align: center;
     color: rgba(18, 20, 23, 0.8);
+
+    @media only screen and (min-width: 768px) {
+      font-size: 22px;
+      line-height: 150%;
+    }
   }
 `;
