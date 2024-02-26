@@ -2,6 +2,8 @@ import styled from "styled-components";
 import vector from "../../img/Vector-min.jpg";
 import mobileImg from "../../img/registration-mobile.png";
 import desctopImg from "../../img/registration-desctop.png";
+import eye from "../../img/eye.svg";
+import eye_off from "../../img/eye-off.svg";
 
 export const RegisterPageContainer = styled.div`
   display: grid;
@@ -111,6 +113,7 @@ export const RegisterPageContainer = styled.div`
     border: 1px solid rgba(18, 20, 23, 0.1);
     border-radius: 15px;
     padding: 16px 18px;
+    width: 100%;
 
     font-weight: 400;
     font-size: 16px;
@@ -176,5 +179,56 @@ export const RegisterPageContainer = styled.div`
     line-height: 150%;
     text-align: center;
     color: rgba(18, 20, 23, 0.8);
+  }
+
+  .DivInput {
+    position: relative;
+  }
+
+  .DivInput:hover .ShowPassword,
+  .DivInput:hover .HidePassword {
+    display: block;
+  }
+
+  .ShowPassword {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url(${eye_off});
+  }
+
+  .HidePassword {
+    display: none;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 20px;
+    height: 20px;
+    background-image: url(${eye});
+  }
+
+  input::placeholder {
+    color: #121417;
+  }
+
+  .ErrorText {
+    position: absolute;
+    color: red;
+    top: 60px;
+    left: 20px;
+    font-size: 12px;
+  }
+
+  .SuccessText {
+    position: absolute;
+    color: green;
+    top: 60px;
+    left: 20px;
+    font-size: 12px;
   }
 `;

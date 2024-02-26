@@ -1,8 +1,37 @@
 import { NavLink } from "react-router-dom";
 import { RegisterPageContainer } from "./registerPage.styled";
-// import Illustration from "../../img/illustration.png";
+import { useFormik } from "formik";
+import { SignupSchema } from "utils/validationSchemas";
+import { ShowRules } from "utils/showRules";
 
 export function RegisterPage() {
+  const {
+    values,
+    errors,
+    touched,
+    isValid,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+
+    validationSchema: SignupSchema,
+
+    onSubmit: (values) => {
+      // dispatch(logUp(values)).then(() => {});
+    },
+  });
+
+  const { showPassword, getInputAlert, getHidePassword } = ShowRules(
+    values,
+    touched,
+    errors
+  );
   return (
     <RegisterPageContainer>
       <div className="ImgContainer">
@@ -16,10 +45,54 @@ export function RegisterPage() {
           below. All fields are mandatory:
         </p>
         <form className="Form">
-          <input className="Input" placeholder="Name" />
-          <input className="Input" placeholder="Email" />
-          <input className="Input" placeholder="Password" />
-          <button className="ButtonSubmit">Register</button>
+          <div className="DivInput">
+            <input
+              id="registerName"
+              name="name"
+              type="text"
+              placeholder="Name"
+              className="Input"
+              onChange={handleChange}
+              value={values.name}
+              onBlur={handleBlur}
+            />
+            {getInputAlert("name")}
+          </div>
+          <div className="DivInput">
+            <input
+              id="registerEmail"
+              name="email"
+              type="email"
+              placeholder="Email"
+              className="Input"
+              onChange={handleChange}
+              value={values.email}
+              onBlur={handleBlur}
+            />
+            {getInputAlert("email")}
+          </div>
+          <div className="DivInput" id="password">
+            <input
+              id="registerPassword"
+              name="password"
+              placeholder="Password"
+              type={showPassword ? "text" : "password"}
+              className="Input"
+              onChange={handleChange}
+              value={values.password}
+              onBlur={handleBlur}
+            />
+            {getInputAlert("password")}
+            {values.password && getHidePassword()}
+          </div>
+          <button
+            className="ButtonSubmit"
+            type="submit"
+            disabled={!isValid}
+            onClick={handleSubmit}
+          >
+            Register
+          </button>
         </form>
         <NavLink className="NavLogIn" to="/login">
           Login
