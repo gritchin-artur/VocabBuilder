@@ -78,4 +78,21 @@ export const MainContainer = styled.div`
       display: none;
     }
   }
+
+  .ButtonLogOut {
+    border: 1px solid #85aa9f;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    background: #85aa9f;
+
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 156%;
+    color: #fcfcfc;
+  }
 `;

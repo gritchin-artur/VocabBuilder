@@ -3,7 +3,7 @@ import { ReactComponent as Logo } from "../img/Craftwork.svg";
 import { ReactComponent as User } from "../img/gridicons_user-2.svg";
 import { ReactComponent as Burger } from "../img/Nav.svg";
 import { MainContainer } from "./layout.styled";
-import { Suspense, useEffect } from "react";
+import { Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalMobile } from "../redux/modals/modal-slice";
 import MobileModal from "../modals/mobileModal";
@@ -17,13 +17,12 @@ export default function Layout() {
     (state) => state.modal.isModalOpenMobile
   );
   const userName = useSelector((state) => state.auth.name);
-  const token = useSelector((state) => state.auth.token);
 
   const handleSubmit = () => {
-    dispatch(authOperations.logOut(token))
-      // .unwrap()
+    dispatch(authOperations.logOut())
+      .unwrap()
       .then(() => navigate("/"))
-      .catch((error) => toast.error("Please try again 🤔"));
+      .catch((error) => toast.error("Something went wrong 🤔"));
   };
   return (
     <>
@@ -32,38 +31,43 @@ export default function Layout() {
           <Logo />
           <h2>VocabBuilder</h2>
         </NavLink>
-        <ul className="NavigationContainer">
-          <li>
-            <NavLink className="NavElement" to="/dictionary">
-              Dictionary
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="NavElement" to="/recommend">
-              Recommend
-            </NavLink>
-          </li>
-          <li>
-            <NavLink className="NavElement" to="/training">
-              Training
-            </NavLink>
-          </li>
-        </ul>
-        <button onClick={handleSubmit}>Log Out</button>
-        <div className="RightSideHeader">
-          {userName && (
+        {userName && (
+          <ul className="NavigationContainer">
+            <li>
+              <NavLink className="NavElement" to="/dictionary">
+                Dictionary
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="NavElement" to="/recommend">
+                Recommend
+              </NavLink>
+            </li>
+            <li>
+              <NavLink className="NavElement" to="/training">
+                Training
+              </NavLink>
+            </li>
+          </ul>
+        )}
+
+        {userName && (
+          <div className="RightSideHeader">
+            <button className="ButtonLogOut" onClick={handleSubmit}>
+              Log Out
+            </button>
             <div className="UserContainer">
               <p className="UserName">{userName}</p>
               <span className="UserImag">
                 <User />
               </span>
             </div>
-          )}
-          <Burger
-            className="ButtonBurger"
-            onClick={() => dispatch(openModalMobile())}
-          />
-        </div>
+            <Burger
+              className="ButtonBurger"
+              onClick={() => dispatch(openModalMobile())}
+            />
+          </div>
+        )}
       </MainContainer>
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
