@@ -53,6 +53,12 @@ export const MainContainer = styled.div`
   .UserContainer {
     display: flex;
     align-items: center;
+    gap: 16px;
+  }
+
+  .UserName {
+    font-weight: 500;
+    font-size: 20px;
   }
 
   .UserImag {

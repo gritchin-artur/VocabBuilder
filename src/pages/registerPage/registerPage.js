@@ -1,10 +1,14 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RegisterPageContainer } from "./registerPage.styled";
 import { useFormik } from "formik";
 import { SignupSchema } from "utils/validationSchemas";
 import { ShowRules } from "utils/showRules";
+import { useDispatch } from "react-redux";
+import authOperations from "../../redux/auth/auth-operations";
 
 export function RegisterPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     values,
     errors,
@@ -23,15 +27,18 @@ export function RegisterPage() {
     validationSchema: SignupSchema,
 
     onSubmit: (values) => {
-      // dispatch(logUp(values)).then(() => {});
+      dispatch(authOperations.register(values)).then(() =>
+        navigate("/dictionary")
+      );
     },
   });
 
-  const { showPassword, getInputAlert, getHidePassword } = ShowRules(
-    values,
-    touched,
-    errors
-  );
+  const {
+    showPassword,
+    getInputAlert,
+    getHidePassword,
+    getInputClass,
+  } = ShowRules(values, touched, errors);
   return (
     <RegisterPageContainer>
       <div className="ImgContainer">
@@ -51,7 +58,7 @@ export function RegisterPage() {
               name="name"
               type="text"
               placeholder="Name"
-              className="Input"
+              className={getInputClass("name")}
               onChange={handleChange}
               value={values.name}
               onBlur={handleBlur}
@@ -64,7 +71,7 @@ export function RegisterPage() {
               name="email"
               type="email"
               placeholder="Email"
-              className="Input"
+              className={getInputClass("email")}
               onChange={handleChange}
               value={values.email}
               onBlur={handleBlur}
@@ -77,7 +84,7 @@ export function RegisterPage() {
               name="password"
               placeholder="Password"
               type={showPassword ? "text" : "password"}
-              className="Input"
+              className={getInputClass("password")}
               onChange={handleChange}
               value={values.password}
               onBlur={handleBlur}

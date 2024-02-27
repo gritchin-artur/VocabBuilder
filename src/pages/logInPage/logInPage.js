@@ -2,8 +2,13 @@ import { useFormik } from "formik";
 import { LogInPageContainer } from "./logInPage.styled";
 import { SigninSchema } from "utils/validationSchemas";
 import { ShowRules } from "utils/showRules";
+import { useDispatch } from "react-redux";
+import authOperations from "../../redux/auth/auth-operations";
+import { useNavigate } from "react-router-dom";
 
 export function LogInPage() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const {
     values,
     errors,
@@ -20,14 +25,19 @@ export function LogInPage() {
 
     validationSchema: SigninSchema,
 
-    onSubmit: (values) => {},
+    onSubmit: (values) => {
+      dispatch(authOperations.logIn(values)).then(() =>
+        navigate("/dictionary")
+      );
+    },
   });
 
-  const { showPassword, getInputAlert, getHidePassword } = ShowRules(
-    values,
-    touched,
-    errors
-  );
+  const {
+    showPassword,
+    getInputAlert,
+    getHidePassword,
+    getInputClass,
+  } = ShowRules(values, touched, errors);
   return (
     <LogInPageContainer>
       <div className="ImgContainer">
@@ -46,7 +56,7 @@ export function LogInPage() {
               name="email"
               type="email"
               placeholder="Email"
-              className="Input"
+              className={getInputClass("email")}
               onChange={handleChange}
               value={values.email}
               onBlur={handleBlur}
@@ -60,7 +70,7 @@ export function LogInPage() {
               name="password"
               placeholder="Password"
               type={showPassword ? "text" : "password"}
-              className="Input"
+              className={getInputClass("password")}
               onChange={handleChange}
               value={values.password}
               onBlur={handleBlur}

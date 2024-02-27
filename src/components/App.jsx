@@ -10,6 +10,8 @@ import { Toaster } from "react-hot-toast";
 import { Navigate, Route, Routes } from "react-router-dom";
 import { RegisterPage } from "pages/registerPage/registerPage";
 import { LogInPage } from "pages/logInPage/logInPage";
+import PrivateRoute from "./Routes/PrivatRoute/PrivateRoute";
+import PublicRoute from "./Routes/PublicRoute/PublicRoute";
 
 export const App = () => {
   return (
@@ -22,11 +24,46 @@ export const App = () => {
         <Routes>
           <Route path="/" element={<Layout />}>
             <Route index exact element={<HomePage />} />
-            <Route path="dictionary" element={<DictionaryPage />} />
-            <Route path="recommend" element={<RecommendPage />} />
-            <Route path="training" element={<TrainingPage />} />
-            <Route path="register" element={<RegisterPage />} />
-            <Route path="login" element={<LogInPage />} />
+            <Route
+              path="dictionary"
+              element={
+                <PrivateRoute>
+                  <DictionaryPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="recommend"
+              element={
+                <PrivateRoute>
+                  <RecommendPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="training"
+              element={
+                <PrivateRoute>
+                  <TrainingPage />
+                </PrivateRoute>
+              }
+            />
+            <Route
+              path="register"
+              element={
+                <PublicRoute>
+                  <RegisterPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path="login"
+              element={
+                <PublicRoute>
+                  <LogInPage />
+                </PublicRoute>
+              }
+            />
             <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>

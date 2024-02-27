@@ -4,6 +4,8 @@ import mobileImg from "../../img/registration-mobile.png";
 import desctopImg from "../../img/registration-desctop.png";
 import eye from "../../img/eye.svg";
 import eye_off from "../../img/eye-off.svg";
+import correct from "../../img/correct.svg";
+import error from "../../img/error.svg";
 
 export const LogInPageContainer = styled.div`
   display: grid;
@@ -71,6 +73,7 @@ export const LogInPageContainer = styled.div`
     @media only screen and (min-width: 1440px) {
       grid-area: f;
       margin-right: 70px;
+      margin-top: 0;
     }
   }
 
@@ -103,15 +106,14 @@ export const LogInPageContainer = styled.div`
   .Form {
     margin-top: 16px;
     display: grid;
-    gap: 14px;
+    gap: 18px;
 
     @media only screen and (min-width: 768px) {
       margin-top: 36px;
-      gap: 18px;
     }
   }
 
-  .Input {
+  input {
     box-sizing: border-box;
     border: 1px solid rgba(18, 20, 23, 0.1);
     border-radius: 15px;
@@ -122,6 +124,11 @@ export const LogInPageContainer = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #121417;
+
+    &:focus {
+      outline: none;
+      box-shadow: none;
+    }
   }
 
   .ButtonSubmit {
@@ -194,6 +201,14 @@ export const LogInPageContainer = styled.div`
     display: block;
   }
 
+  .ErrorInput {
+    border: 1px solid #e74a3b;
+  }
+
+  .SuccessInput {
+    border: 1px solid #3cbc81;
+  }
+
   .ShowPassword {
     display: none;
     position: absolute;
@@ -226,6 +241,14 @@ export const LogInPageContainer = styled.div`
     top: 60px;
     left: 20px;
     font-size: 12px;
+    align-items: flex-start;
+    display: flex;
+
+    &::before {
+      content: url(${error});
+      display: inline-block;
+      margin-right: 5px;
+    }
   }
 
   .SuccessText {
@@ -234,5 +257,13 @@ export const LogInPageContainer = styled.div`
     top: 60px;
     left: 20px;
     font-size: 12px;
+    align-items: flex-start;
+    display: flex;
+
+    &::before {
+      content: url(${correct});
+      display: inline-block;
+      margin-right: 5px;
+    }
   }
 `;
