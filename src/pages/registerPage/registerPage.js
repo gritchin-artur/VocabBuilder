@@ -6,7 +6,7 @@ import { ShowRules } from "utils/showRules";
 import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth/auth-operations";
 
-export function RegisterPage() {
+export default function RegisterPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {

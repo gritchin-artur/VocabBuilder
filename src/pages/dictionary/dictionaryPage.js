@@ -1,78 +1,82 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DictionaryPageContainer } from "./dictionaryPage.styled";
 import { ReactComponent as Plus } from "../../img/plus.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal-01 (1).svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllWord } from "../../redux/data/data-operation";
+import { useDictionaryHook } from "components/hooks/dictyonaryHook";
 
 export default function DictionaryPage() {
-  const token = useSelector((state) => state.auth.token);
-  console.log(token);
-  const CategoriesItem = [
-    "Verb",
-    "Participle",
-    "Noun",
-    "Adjective",
-    "Pronoun",
-    "Numerals",
-    "Adverb",
-    "Preposition",
-    "Conjuction",
-    "Phrasal verb",
-    "Functional phrase",
-  ];
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    filters: "",
+    statistics: "",
+  });
+  const [isVerb, setIsVerb] = useState(false);
+
+  const { CategoriesItem } = useDictionaryHook();
+  const data = useSelector((state) => state.data.words);
+
   useEffect(() => {
-    const customInput = document.querySelector(".custom-input");
-    const input = customInput.querySelector("input");
-    const dropdown = customInput.querySelector(".dropdown");
-    const dropdownItems = dropdown.querySelectorAll("li");
+    dispatch(getAllWord(formData));
+  }, [dispatch, formData]);
+  console.log(data);
 
-    const handleClick = () => {
-      dropdown.style.display = "grid";
-    };
-
-    const handleDropdownItemClick = (item) => {
-      input.value = item.textContent;
-      dropdown.style.display = "none";
-    };
-
-    const handleDocumentClick = (e) => {
-      if (!customInput.contains(e.target)) {
-        dropdown.style.display = "none";
-      }
-    };
-
-    input.addEventListener("click", handleClick);
-
-    dropdownItems.forEach((item) => {
-      item.addEventListener("click", () => handleDropdownItemClick(item));
+  const handleInputChange = (event, item) => {
+    const { name, value } = event.target;
+    setFormData({
+      ...formData,
+      [name]: value,
     });
+    console.log("values=>", formData);
+    console.log(isVerb);
+  };
 
-    document.addEventListener("click", handleDocumentClick);
+  const handleListItemClick = (value) => {
+    setFormData((prevState) => ({
+      ...prevState,
+      statistics: value,
+    }));
+    formData.statistics !== "Verb" ? setIsVerb(true) : setIsVerb(false);
+  };
 
-    return () => {
-      input.removeEventListener("click", handleClick);
-      dropdownItems.forEach((item) =>
-        item.removeEventListener("click", handleDropdownItemClick)
-      );
-      document.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
   return (
     <DictionaryPageContainer>
       <form className="Form">
         <div className="SearchContainer">
-          <input className="Input" type="text" placeholder="Find the word" />
+          <input
+            id="filters"
+            className="Input"
+            type="text"
+            placeholder="Find the word"
+            name="filters"
+            value={formData.filters}
+            onChange={handleInputChange}
+          />
         </div>
         <div className="custom-input">
-          <input className="Input" type="text" placeholder="Categories" />
+          <input
+            id="statistics"
+            name="statistics"
+            className="Input"
+            type="text"
+            placeholder="Categories"
+            value={formData.statistics}
+            onChange={handleInputChange}
+          />
           <ul className="dropdown">
             {CategoriesItem.map((item) => (
-              <li className="ListItem" key={item}>
+              <li
+                className="ListItem"
+                key={item}
+                onClick={() => handleListItemClick(item)}
+              >
                 {item}
               </li>
             ))}
           </ul>
         </div>
+        <p style={{ display: isVerb ? "flex" : "none" }}>Radio button</p>
       </form>
       <div>
         <p className="CountWord">
@@ -96,16 +100,16 @@ export default function DictionaryPage() {
             <th className="TableHeaderItem">Progress</th>
           </tr>
         </thead>
-        {/* {items.map(({ id, type, amount, currency }) => ( */}
-        <tbody key="">
-          <tr className="WordList">
-            <td className="TableHeaderItem">type</td>
-            <td className="TableHeaderItem">amount</td>
-            <td className="TableHeaderItem">currency</td>
-            <td className="TableHeaderItem">Progress</td>
-          </tr>
-        </tbody>
-        {/* ))} */}
+        {data.map(({ en, ua, category, isIrregular }, item) => (
+          <tbody key={item}>
+            <tr className="WordList">
+              <td className="TableHeaderItem">{en}</td>
+              <td className="TableHeaderItem">{ua}</td>
+              <td className="TableHeaderItem">{category}</td>
+              <td className="TableHeaderItem">{isIrregular}</td>
+            </tr>
+          </tbody>
+        ))}
       </table>
     </DictionaryPageContainer>
   );

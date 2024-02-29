@@ -1,17 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { token } from "../../api/axiosSettings";
 import toast from "react-hot-toast";
-
-axios.defaults.baseURL = "https://vocab-builder-backend.p.goit.global/api";
-
-const token = {
-  set(token) {
-    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
-  },
-  unset() {
-    axios.defaults.headers.common.Authorization = "";
-  },
-};
 
 const register = createAsyncThunk(
   "auth/singup",
@@ -60,9 +49,8 @@ const fetchCurrentUser = createAsyncThunk(
     if (persistedToken === null) {
       return thunkAPI.rejectWithValue(null);
     }
-
-    token.set(persistedToken);
     try {
+      token.set(persistedToken);
       const { data } = await axios.get("/users/current");
       return data;
     } catch (error) {

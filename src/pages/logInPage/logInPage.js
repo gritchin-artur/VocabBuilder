@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth/auth-operations";
 import { useNavigate } from "react-router-dom";
 
-export function LogInPage() {
+export default function LogInPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const {

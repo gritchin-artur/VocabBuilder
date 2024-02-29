@@ -12,23 +12,34 @@ import {
   persistReducer,
 } from "redux-persist";
 import authSlise from "./auth/auth-slise";
+import dataSlise from "./data/data-slise";
 
-const persistConfig = {
-  key: "root",
-  version: 1,
+const authPersistConfig = {
+  key: "auth",
   storage,
-  whitelist: ["auth", "modal"],
+  whitelist: ["token"],
+};
+
+const modalPersistConfig = {
+  key: "modal",
+  storage,
+  whitelist: ["isModalOpenMobile"],
+};
+
+const dataPersistConfig = {
+  key: "data",
+  storage,
+  whitelist: ["words"],
 };
 
 const rootReducer = combineReducers({
-  auth: authSlise,
-  modal: modalReducer,
+  auth: persistReducer(authPersistConfig, authSlise),
+  modal: persistReducer(modalPersistConfig, modalReducer),
+  data: persistReducer(dataPersistConfig, dataSlise),
 });
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: rootReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {

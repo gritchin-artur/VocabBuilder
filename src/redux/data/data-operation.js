@@ -1,7 +1,7 @@
 // import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import axios, { token } from "../../api/axiosSettings";
 import toast from "react-hot-toast";
 
 // export const contactsApi = createApi({
@@ -46,28 +46,26 @@ import toast from "react-hot-toast";
 //   useAddContactMutation,
 // } = contactsApi;
 
-axios.defaults.baseURL = "https://vocab-builder-backend.p.goit.global/api";
-
 export const getAllWord = createAsyncThunk(
   "/words/all",
-  async (_, thunkApi) => {
+  async (formData, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+    const params = {
+      keyword: formData.filters,
+      category: formData.statistics.toLowerCase(),
+      isIrregular: "",
+      page: 1,
+      limit: 7,
+    };
+
     try {
-      const response = await axios.get("/words/all", {
-        params: {
-          category: "verb",
-          isIrregular: true,
-          page: 1,
-          limit: 7,
-        },
-        headers: {
-          Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1ZGNiODRiNjI4YjJhNTk2NjRjYmIxNiIsImlhdCI6MTcwOTE0NTE2OCwiZXhwIjoxNzA5MjI3OTY4fQ.0RclWnjFlue1j0qafpUcEA3hR9zpvMyZrUst9bDV8NM
-`,
-        },
-      });
+      const response = await axios.get("/words/all", { params });
+      token.set(persistedToken);
       return response.data;
     } catch (error) {
       toast.error("Oops. Something went wrong. Please try again.");
-      return thunkApi.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );

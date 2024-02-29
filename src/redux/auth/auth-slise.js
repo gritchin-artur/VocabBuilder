@@ -23,8 +23,8 @@ const handleFetchCurrentUserPending = (state) => {
 };
 
 const handleFetchCurrentUserFulfilled = (state, { payload }) => {
-  state.name = payload;
-  state.email = payload;
+  state.name = payload.name;
+  state.email = payload.email;
   state.isLoggedIn = true;
   state.isFetchingCurrentUser = false;
 };
