@@ -1,10 +1,11 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.dc97866b.js",
+    "main.js": "/VocabBuilder/static/js/main.582e4037.js",
     "static/media/registration-desctop.png": "/VocabBuilder/static/media/registration-desctop.d2e91d2e25044b505a73.png",
     "static/media/registration-mobile.png": "/VocabBuilder/static/media/registration-mobile.cab3f1832a1e3f78e770.png",
     "index.html": "/VocabBuilder/index.html",
+    "static/media/toggle.svg": "/VocabBuilder/static/media/toggle.44956463d2686e9744e02374ed696b95.svg",
     "static/media/eye-off.svg": "/VocabBuilder/static/media/eye-off.5b79f6604c00caac7ff440292afb980e.svg",
     "static/media/CraftworkHome.svg": "/VocabBuilder/static/media/CraftworkHome.e424bad5f769d976016f76435a0304d0.svg",
     "static/media/Craftwork.svg": "/VocabBuilder/static/media/Craftwork.cedd716bc721d90a6334e7a6e2011a34.svg",
@@ -12,13 +13,16 @@
     "static/media/eye.svg": "/VocabBuilder/static/media/eye.561e8ec3e4f1072089624ee4031394db.svg",
     "static/media/correct.svg": "/VocabBuilder/static/media/correct.a25809261aafd418fb0e80825e9754ba.svg",
     "static/media/gridicons_user-2.svg": "/VocabBuilder/static/media/gridicons_user-2.981ca9eff9c9adc8a186196c7717e98e.svg",
+    "static/media/search.svg": "/VocabBuilder/static/media/search.f40218f957a1954f6b3cc31fe50119a4.svg",
+    "static/media/switch-horizontal-01 (1).svg": "/VocabBuilder/static/media/switch-horizontal-01 (1).f8100eed7621827910887b5fb2a1b17b.svg",
     "static/media/error.svg": "/VocabBuilder/static/media/error.047fff7d13be1e7ac4877a1b342482fb.svg",
+    "static/media/plus.svg": "/VocabBuilder/static/media/plus.ea9d97b09f692ed8434ac3c7833cb2ec.svg",
     "static/media/x-modal.svg": "/VocabBuilder/static/media/x-modal.1449c9ac645c58ae0b645a33f13d095b.svg",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.dc97866b.js.map": "/VocabBuilder/static/js/main.dc97866b.js.map"
+    "main.582e4037.js.map": "/VocabBuilder/static/js/main.582e4037.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.dc97866b.js"
+    "static/js/main.582e4037.js"
   ]
 }
