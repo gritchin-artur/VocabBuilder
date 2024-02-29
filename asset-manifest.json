@@ -1,7 +1,17 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.582e4037.js",
+    "main.js": "/VocabBuilder/static/js/main.2fe3dea5.js",
+    "static/js/25.18dec8b0.chunk.js": "/VocabBuilder/static/js/25.18dec8b0.chunk.js",
+    "static/js/806.c41b0292.chunk.js": "/VocabBuilder/static/js/806.c41b0292.chunk.js",
+    "static/js/258.a9765de1.chunk.js": "/VocabBuilder/static/js/258.a9765de1.chunk.js",
+    "static/js/332.a64fe2b1.chunk.js": "/VocabBuilder/static/js/332.a64fe2b1.chunk.js",
+    "static/js/585.9edd1d60.chunk.js": "/VocabBuilder/static/js/585.9edd1d60.chunk.js",
+    "static/js/873.f7f1352e.chunk.js": "/VocabBuilder/static/js/873.f7f1352e.chunk.js",
+    "static/js/538.a1548a5d.chunk.js": "/VocabBuilder/static/js/538.a1548a5d.chunk.js",
+    "static/js/739.5cedaf70.chunk.js": "/VocabBuilder/static/js/739.5cedaf70.chunk.js",
+    "static/js/456.1a421670.chunk.js": "/VocabBuilder/static/js/456.1a421670.chunk.js",
+    "static/js/306.13c75712.chunk.js": "/VocabBuilder/static/js/306.13c75712.chunk.js",
     "static/media/registration-desctop.png": "/VocabBuilder/static/media/registration-desctop.d2e91d2e25044b505a73.png",
     "static/media/registration-mobile.png": "/VocabBuilder/static/media/registration-mobile.cab3f1832a1e3f78e770.png",
     "index.html": "/VocabBuilder/index.html",
@@ -19,10 +29,20 @@
     "static/media/plus.svg": "/VocabBuilder/static/media/plus.ea9d97b09f692ed8434ac3c7833cb2ec.svg",
     "static/media/x-modal.svg": "/VocabBuilder/static/media/x-modal.1449c9ac645c58ae0b645a33f13d095b.svg",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.582e4037.js.map": "/VocabBuilder/static/js/main.582e4037.js.map"
+    "main.2fe3dea5.js.map": "/VocabBuilder/static/js/main.2fe3dea5.js.map",
+    "25.18dec8b0.chunk.js.map": "/VocabBuilder/static/js/25.18dec8b0.chunk.js.map",
+    "806.c41b0292.chunk.js.map": "/VocabBuilder/static/js/806.c41b0292.chunk.js.map",
+    "258.a9765de1.chunk.js.map": "/VocabBuilder/static/js/258.a9765de1.chunk.js.map",
+    "332.a64fe2b1.chunk.js.map": "/VocabBuilder/static/js/332.a64fe2b1.chunk.js.map",
+    "585.9edd1d60.chunk.js.map": "/VocabBuilder/static/js/585.9edd1d60.chunk.js.map",
+    "873.f7f1352e.chunk.js.map": "/VocabBuilder/static/js/873.f7f1352e.chunk.js.map",
+    "538.a1548a5d.chunk.js.map": "/VocabBuilder/static/js/538.a1548a5d.chunk.js.map",
+    "739.5cedaf70.chunk.js.map": "/VocabBuilder/static/js/739.5cedaf70.chunk.js.map",
+    "456.1a421670.chunk.js.map": "/VocabBuilder/static/js/456.1a421670.chunk.js.map",
+    "306.13c75712.chunk.js.map": "/VocabBuilder/static/js/306.13c75712.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.582e4037.js"
+    "static/js/main.2fe3dea5.js"
   ]
 }
