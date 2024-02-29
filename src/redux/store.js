@@ -1,7 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { modalReducer } from "./modals/modal-slice";
-// import teachersReducer from "./data/data-slise";
-// import favoriteReduser from "./data/favorite-slise";
 import storage from "redux-persist/lib/storage";
 import {
   persistStore,
@@ -19,13 +17,11 @@ const persistConfig = {
   key: "root",
   version: 1,
   storage,
-  whitelist: ["auth", "favorite", "modal", "teachers"],
+  whitelist: ["auth", "modal"],
 };
 
 const rootReducer = combineReducers({
   auth: authSlise,
-  //   teachers: teachersReducer,
-  //   favorite: favoriteReduser,
   modal: modalReducer,
 });
 

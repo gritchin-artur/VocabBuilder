@@ -86,7 +86,7 @@ export const MainContainer = styled.div`
     height: 60px;
     background: #85aa9f;
 
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     right: 20px;
 

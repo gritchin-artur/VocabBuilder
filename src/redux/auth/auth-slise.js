@@ -3,7 +3,6 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import authOperations from "./auth-operations";
 
 const initialState = {
-  // user: { name: null, email: null },
   name: null,
   email: null,
   token: null,
@@ -12,7 +11,6 @@ const initialState = {
 };
 
 const handleLogOutFulfilled = (state) => {
-  // state.user = { name: null, email: null };
   state.name = null;
   state.email = null;
   state.token = null;
@@ -25,7 +23,6 @@ const handleFetchCurrentUserPending = (state) => {
 };
 
 const handleFetchCurrentUserFulfilled = (state, { payload }) => {
-  // state.user = payload;
   state.name = payload;
   state.email = payload;
   state.isLoggedIn = true;
@@ -37,7 +34,6 @@ const handleFetchCurrentUserReject = (state) => {
 };
 
 const handleRegisterLogInFulfilled = (state, { payload }) => {
-  // state.user = payload.user;
   state.name = payload.name;
   state.email = payload.email;
   state.token = payload.token;
@@ -51,7 +47,7 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
 
-      .addCase(authOperations.logOut.fulfilled, handleLogOutFulfilled)
+      .addCase(authOperations.logOut.pending, handleLogOutFulfilled)
       .addCase(
         authOperations.fetchCurrentUser.pending,
         handleFetchCurrentUserPending
