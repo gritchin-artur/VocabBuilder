@@ -73,11 +73,11 @@ const authSlice = createSlice({
 
 export default authSlice.reducer;
 
-const confused = "no";
-const myKey = confused;
+// const confused = "no";
+// const myKey = confused;
 
-const obj = {
-  [myKey]: false,
-};
+// const obj = {
+//   [myKey]: false,
+// };
 
-console.log(obj);
+// console.log(obj);

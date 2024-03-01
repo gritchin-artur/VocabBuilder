@@ -8,6 +8,7 @@ export const DictionaryPageContainer = styled.div`
   padding: 32px 16px;
 
   .Form {
+    position: relative;
     display: grid;
     gap: 8px;
   }
@@ -54,6 +55,7 @@ export const DictionaryPageContainer = styled.div`
   }
 
   .dropdown {
+    z-index: 1000;
     position: absolute;
     margin-top: 5px;
     display: none;
@@ -106,10 +108,67 @@ export const DictionaryPageContainer = styled.div`
     gap: 8px;
   }
 
+  .RadioButtonList {
+    position: absolute;
+    top: 120px;
+    display: grid;
+    gap: 34px;
+    left: 14px;
+  }
+
+  .RadioButtonItem {
+    position: relative;
+    display: flex;
+    gap: 8px;
+
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+  }
+
+  .RadioButton {
+    height: 12px;
+    width: 12px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    outline: none;
+    cursor: pointer;
+
+    &:before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      border: 3px solid #8a8a89;
+    }
+
+    &:checked:before {
+      border-color: #85aa9f;
+    }
+
+    &:checked::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: #85aa9f;
+      transform: translate(-50%, -50%);
+      visibility: visible;
+    }
+  }
+
   .Table {
     margin-top: 40px;
     border-collapse: collapse;
     width: 100%;
+    table-layout: fixed;
 
     border-radius: 8px;
     overflow: hidden;
@@ -135,5 +194,26 @@ export const DictionaryPageContainer = styled.div`
 
   .WordList:nth-child(odd) {
     background-color: #ffffff;
+  }
+
+  .PageList {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .PageButton {
+    border: 1px solid rgba(18, 20, 23, 0.1);
+    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+
+    justify-content: center;
+    display: flex;
+    align-items: center;
+
+    font-weight: 600;
+    font-size: 13px;
   }
 `;
