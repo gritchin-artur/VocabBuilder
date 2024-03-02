@@ -6,8 +6,8 @@ import { MainContainer } from "./layout.styled";
 import { Suspense } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalMobile } from "../redux/modals/modal-slice";
-import MobileModal from "../modals/mobileModal";
 import authOperations from "../redux/auth/auth-operations";
+import Modals from "modals/modals";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -67,7 +67,7 @@ export default function Layout() {
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-      {isMobileModalOpen && <MobileModal />}
+      {isMobileModalOpen && <Modals />}
       {/* <Footer /> */}
     </>
   );

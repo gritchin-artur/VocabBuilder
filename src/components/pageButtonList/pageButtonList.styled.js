@@ -12,6 +12,7 @@ export const PageList = styled.ul`
     border-radius: 8px;
     min-width: 32px;
     height: 32px;
+    cursor: pointer;
 
     justify-content: center;
     display: flex;

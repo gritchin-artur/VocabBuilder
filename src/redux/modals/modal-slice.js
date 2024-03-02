@@ -4,8 +4,8 @@ const modalSlice = createSlice({
   name: "modal",
   initialState: {
     isModalOpenMobile: false,
-    // isModalOpenLogIn: false,
-    // isModalOpenTrialLesson: false,
+    isModalOpenAddWord: false,
+    isModalOpenTrainOneseif: false,
     // isBookTrialLesson: [],
   },
   reducers: {
@@ -15,18 +15,18 @@ const modalSlice = createSlice({
     closeModalMobile: (state) => {
       state.isModalOpenMobile = false;
     },
-    // openModalLogIn: (state) => {
-    //   state.isModalOpenLogIn = true;
-    // },
-    // closeModalLogIn: (state) => {
-    //   state.isModalOpenLogIn = false;
-    // },
-    // openModalTrialLesson: (state) => {
-    //   state.isModalOpenTrialLesson = true;
-    // },
-    // closeModalTrialLesson: (state) => {
-    //   state.isModalOpenTrialLesson = false;
-    // },
+    openModalAddWord: (state) => {
+      state.isModalOpenAddWord = true;
+    },
+    closeModalAddWord: (state) => {
+      state.isModalOpenAddWord = false;
+    },
+    openModalTrainOneseif: (state) => {
+      state.isModalOpenTrialLesson = true;
+    },
+    closeModalTrainOneseif: (state) => {
+      state.isModalOpenTrialLesson = false;
+    },
     // addBookTrialLesson(state, { payload }) {
     //   state.isBookTrialLesson.splice(0, 1, payload);
     // },
@@ -38,9 +38,9 @@ export const modalReducer = modalSlice.reducer;
 export const {
   openModalMobile,
   closeModalMobile,
-  // openModalLogIn,
-  // closeModalLogIn,
-  // openModalTrialLesson,
-  // closeModalTrialLesson,
+  openModalAddWord,
+  closeModalAddWord,
+  openModalTrainOneseif,
+  closeModalTrainOneseif,
   // addBookTrialLesson,
 } = modalSlice.actions;

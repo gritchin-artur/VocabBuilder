@@ -7,10 +7,41 @@ export const DictionaryPageContainer = styled.div`
   height: 100vh;
   padding: 32px 16px;
 
+  @media only screen and (min-width: 768px) {
+    padding: 64px 32px;
+  }
+
+  .FilterContainer {
+    @media only screen and (min-width: 1440px) {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+
   .Form {
     position: relative;
     display: grid;
     gap: 8px;
+
+    @media only screen and (min-width: 768px) {
+      display: flex;
+    }
+  }
+
+  .CountContainer {
+    @media only screen and (min-width: 768px) {
+      display: flex;
+      align-items: end;
+      gap: 16px;
+
+      margin-top: 30px;
+    }
+
+    @media only screen and (min-width: 1440px) {
+      margin-top: 0;
+      align-items: center;
+    }
   }
 
   .SearchContainer {
@@ -54,6 +85,18 @@ export const DictionaryPageContainer = styled.div`
     }
   }
 
+  .Input[id="filters"] {
+    @media only screen and (min-width: 768px) {
+      width: 274px;
+    }
+  }
+
+  .Input[id="statistics"] {
+    @media only screen and (min-width: 768px) {
+      width: 164px;
+    }
+  }
+
   .dropdown {
     z-index: 1000;
     position: absolute;
@@ -89,6 +132,10 @@ export const DictionaryPageContainer = styled.div`
     align-items: center;
     display: flex;
     gap: 8px;
+
+    @media only screen and (min-width: 768px) {
+      margin-top: 0px;
+    }
   }
 
   .NumberCountWord {
@@ -101,11 +148,16 @@ export const DictionaryPageContainer = styled.div`
     margin-top: 16px;
     display: flex;
     gap: 16px;
+
+    @media only screen and (min-width: 1440px) {
+      margin-top: 0;
+    }
   }
 
   .ButtonItem {
     display: flex;
     gap: 8px;
+    cursor: pointer;
   }
 
   .RadioButtonList {
@@ -114,6 +166,11 @@ export const DictionaryPageContainer = styled.div`
     display: grid;
     gap: 34px;
     left: 14px;
+
+    @media only screen and (min-width: 768px) {
+      position: static;
+      margin-left: 20px;
+    }
   }
 
   .RadioButtonItem {
@@ -124,6 +181,7 @@ export const DictionaryPageContainer = styled.div`
     font-weight: 400;
     font-size: 12px;
     text-align: center;
+    align-items: center;
   }
 
   .RadioButton {
@@ -139,8 +197,8 @@ export const DictionaryPageContainer = styled.div`
       content: "";
       position: absolute;
       top: 50%;
-      width: 18px;
-      height: 18px;
+      width: 14px;
+      height: 14px;
       border-radius: 50%;
       transform: translate(-50%, -50%);
       background-color: #fff;
@@ -155,8 +213,8 @@ export const DictionaryPageContainer = styled.div`
       content: "";
       position: absolute;
       top: 50%;
-      width: 12px;
-      height: 12px;
+      width: 10px;
+      height: 10px;
       border-radius: 50%;
       background-color: #85aa9f;
       transform: translate(-50%, -50%);
@@ -164,14 +222,31 @@ export const DictionaryPageContainer = styled.div`
     }
   }
 
-  .Table {
+  .TableContainer {
     margin-top: 40px;
+    @media only screen and (min-width: 768px) {
+      padding: 18px;
+      background: #fcfcfc;
+      border-radius: 15px;
+      margin-top: 24px;
+    }
+  }
+
+  .Table {
     border-collapse: collapse;
     width: 100%;
     table-layout: fixed;
 
     border-radius: 8px;
     overflow: hidden;
+  }
+
+  .IconCountry {
+    display: none;
+
+    @media only screen and (min-width: 768px) {
+      display: inline-flex;
+    }
   }
 
   .TableHeaderItem {
@@ -182,6 +257,19 @@ export const DictionaryPageContainer = styled.div`
 
     font-weight: 500;
     font-size: 16px;
+
+    @media only screen and (min-width: 1440px) {
+      font-size: 20px;
+    }
+  }
+
+  .TableImagContainer {
+    @media only screen and (min-width: 768px) {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: space-between;
+    }
   }
 
   .TableHeader {

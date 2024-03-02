@@ -2,10 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { DictionaryPageContainer } from "./dictionaryPage.styled";
 import { ReactComponent as Plus } from "../../img/plus.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal-01 (1).svg";
-// import { ReactComponent as First } from "../../img/page-button/First.svg";
-// import { ReactComponent as Next } from "../../img/page-button/Next.svg";
-// import { ReactComponent as Last } from "../../img/page-button/Last.svg";
-// import { ReactComponent as Prev } from "../../img/page-button/Prev.svg";
+import { ReactComponent as Ukraine } from "../../img/ukraine.svg";
+import { ReactComponent as England } from "../../img/united kingdom.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories, getAllWord } from "../../redux/data/data-operation";
 import { useDictionaryHook } from "components/hooks/dictyonaryHook";
@@ -64,118 +62,122 @@ export default function DictionaryPage() {
     }));
   };
 
-  // const pages = Array.from(
-  //   { length: data.totalPages },
-  //   (_, index) => index + 1
-  // );
-
-  // const handleClickPage = (page) => {
-  //   setFormData((prevState) => ({ ...prevState, page: page }));
-  // };
-
   return (
     <DictionaryPageContainer>
-      <form className="Form">
-        <div className="SearchContainer">
-          <input
-            id="filters"
-            className="Input"
-            type="text"
-            placeholder="Find the word"
-            name="filters"
-            value={formData.filters}
-            onChange={handleInputChange}
-          />
-        </div>
-        <div className="custom-input">
-          <input
-            id="statistics"
-            name="statistics"
-            className="Input"
-            type="text"
-            placeholder="Categories"
-            value={formData.statistics}
-            onChange={handleInputChange}
-          />
-          <ul className="dropdown">
-            {categories &&
-              categories.map((item) => (
-                <li
-                  className="ListItem"
-                  key={item}
-                  onClick={() => handleListItemClick(item)}
-                >
-                  {item}
-                </li>
-              ))}
+      <div className="FilterContainer">
+        <form className="Form">
+          <div className="SearchContainer">
+            <input
+              id="filters"
+              className="Input"
+              type="text"
+              placeholder="Find the word"
+              name="filters"
+              value={formData.filters}
+              onChange={handleInputChange}
+            />
+          </div>
+          <div className="custom-input">
+            <input
+              id="statistics"
+              name="statistics"
+              className="Input"
+              type="text"
+              placeholder="Categories"
+              value={formData.statistics}
+              onChange={handleInputChange}
+            />
+            <ul className="dropdown">
+              {categories &&
+                categories.map((item) => (
+                  <li
+                    className="ListItem"
+                    key={item}
+                    onClick={() => handleListItemClick(item)}
+                  >
+                    {item}
+                  </li>
+                ))}
+            </ul>
+          </div>
+          <ul
+            className="RadioButtonList"
+            style={{ display: isVerb ? "flex" : "none" }}
+          >
+            <li className="RadioButtonItem">
+              <input
+                className="RadioButton"
+                id="regular"
+                name="regular"
+                type="radio"
+                onChange={() => handleIsIrregularClick(true)}
+                value={formData.isIrregular}
+                checked={formData.isIrregular === true}
+              />
+              Regular
+            </li>
+            <li className="RadioButtonItem">
+              <input
+                className="RadioButton"
+                id="reason"
+                name="reason"
+                type="radio"
+                onChange={() => handleIsIrregularClick(false)}
+                value={formData.isIrregular}
+                checked={formData.isIrregular === false}
+              />
+              Irregular
+            </li>
+          </ul>
+        </form>
+        <div className="CountContainer">
+          <p className="CountWord">
+            To study:
+            <span className="NumberCountWord">{data.results.length}</span>
+          </p>
+          <ul className="ButtonList">
+            <li className="ButtonItem">
+              Add word <Plus />
+            </li>
+            <li className="ButtonItem">
+              Train oneself <Switch />
+            </li>
           </ul>
         </div>
-        <ul
-          className="RadioButtonList"
-          style={{ display: isVerb ? "flex" : "none" }}
-        >
-          <li className="RadioButtonItem">
-            <input
-              className="RadioButton"
-              id="regular"
-              name="regular"
-              type="radio"
-              onChange={() => handleIsIrregularClick(true)}
-              value={formData.isIrregular}
-              checked={formData.isIrregular === true}
-            />
-            Regular
-          </li>
-          <li className="RadioButtonItem">
-            <input
-              className="RadioButton"
-              id="Career and business"
-              name="reason"
-              type="radio"
-              onChange={() => handleIsIrregularClick(false)}
-              value={formData.isIrregular}
-              checked={formData.isIrregular === false}
-            />
-            Irregular
-          </li>
-        </ul>
-      </form>
-      <div>
-        <p className="CountWord">
-          To study:{" "}
-          <span className="NumberCountWord">{data.results.length}</span>
-        </p>
-        <ul className="ButtonList">
-          <li className="ButtonItem">
-            Add word <Plus />
-          </li>
-          <li className="ButtonItem">
-            Train oneself <Switch />
-          </li>
-        </ul>
       </div>
-      <table className="Table">
-        <thead className="TableHeader">
-          <tr className="TableHeaderList">
-            <th className="TableHeaderItem">Word</th>
-            <th className="TableHeaderItem">Translation</th>
-            <th className="TableHeaderItem">Category</th>
-            <th className="TableHeaderItem">Progress</th>
-          </tr>
-        </thead>
-        {data.results.map(({ en, ua, category, isIrregular }, item) => (
-          <tbody key={item}>
-            <tr className="WordList">
-              <td className="TableHeaderItem">{en}</td>
-              <td className="TableHeaderItem">{ua}</td>
-              <td className="TableHeaderItem">{category}</td>
-              <td className="TableHeaderItem">
-                {isIrregular ? "Регулярний" : "Нерегулярний"}
-              </td>
+      <div className="TableContainer">
+        <table className="Table">
+          <thead className="TableHeader">
+            <tr className="TableHeaderList">
+              <th className="TableHeaderItem">
+                <div className="TableImagContainer">
+                  Word <England className="IconCountry" />
+                </div>
+              </th>
+              <th className="TableHeaderItem">
+                <div className="TableImagContainer">
+                  Translation <Ukraine className="IconCountry" />
+                </div>
+              </th>
+              <th className="TableHeaderItem">Category</th>
+              <th className="TableHeaderItem">Progress</th>
             </tr>
-          </tbody>
-        ))}
-      </table>
+          </thead>
+          {data.results &&
+            data.results.map(({ en, ua, category, isIrregular }, item) => (
+              <tbody key={item}>
+                <tr className="WordList">
+                  <td className="TableHeaderItem">{en}</td>
+                  <td className="TableHeaderItem">{ua}</td>
+                  <td className="TableHeaderItem">{category}</td>
+                  <td className="TableHeaderItem">
+                    {isIrregular ? "Регулярний" : "Нерегулярний"}
+                  </td>
+                </tr>
+              </tbody>
+            ))}
+        </table>
+      </div>
       {data.totalPages > 1 && (
         <PageButtonList
           data={data}
@@ -183,51 +185,6 @@ export default function DictionaryPage() {
           setFormData={setFormData}
         />
       )}
-      {/* {data.totalPages > 1 && (
-        <ul className="PageList">
-          <li className="PageButton" onClick={() => handleClickPage(1)}>
-            <First />
-          </li>
-          <li
-            className="PageButton"
-            onClick={() =>
-              1 < formData.page ? handleClickPage(formData.page - 1) : null
-            }
-          >
-            <Prev />
-          </li>
-          {pages.map((page, item) => (
-            <li
-              style={{
-                background: page === formData.page ? "#85aa9f" : "none",
-                color: page === formData.page ? "#fcfcfc" : "#121417",
-              }}
-              className="PageButton"
-              key={item}
-              onClick={() => handleClickPage(page)}
-              value={formData.page}
-            >
-              {page}
-            </li>
-          ))}
-          <li
-            className="PageButton"
-            onClick={() =>
-              data.totalPages > formData.page
-                ? handleClickPage(formData.page + 1)
-                : null
-            }
-          >
-            <Next />
-          </li>
-          <li
-            className="PageButton"
-            onClick={() => handleClickPage(data.totalPages)}
-          >
-            <Last />
-          </li>
-        </ul>
-      )} */}
     </DictionaryPageContainer>
   );
 }
