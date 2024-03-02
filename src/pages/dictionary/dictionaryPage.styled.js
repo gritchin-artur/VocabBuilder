@@ -258,6 +258,8 @@ export const DictionaryPageContainer = styled.div`
     font-weight: 500;
     font-size: 16px;
 
+    overflow-wrap: break-word;
+
     @media only screen and (min-width: 1440px) {
       font-size: 20px;
     }

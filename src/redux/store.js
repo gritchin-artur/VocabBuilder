@@ -23,7 +23,11 @@ const authPersistConfig = {
 const modalPersistConfig = {
   key: "modal",
   storage,
-  whitelist: ["isModalOpenMobile"],
+  whitelist: [
+    "isModalOpenMobile",
+    "isModalOpenAddWord",
+    "isModalOpenTrainOneseif",
+  ],
 };
 
 const dataPersistConfig = {

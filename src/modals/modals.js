@@ -1,9 +1,13 @@
 import { useCallback, useEffect } from "react";
 import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { closeModalMobile } from "../redux/modals/modal-slice";
+import {
+  closeModalAddWord,
+  closeModalMobile,
+} from "../redux/modals/modal-slice";
 import MobileModal from "./mobileModal/mobileModal";
 import { BackdropStyle } from "./modals.styled";
+import { AddWordModal } from "./addWordModal/addWordModal";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -12,9 +16,13 @@ export default function Modals() {
   const isMobileModalOpen = useSelector(
     (state) => state.modal.isModalOpenMobile
   );
+  const isModalOpenAddWord = useSelector(
+    (state) => state.modal.isModalOpenAddWord
+  );
 
   const handleClickClose = useCallback(() => {
     dispatch(closeModalMobile());
+    dispatch(closeModalAddWord());
   }, [dispatch]);
 
   const handleBackdropClick = (e) => {
@@ -37,12 +45,15 @@ export default function Modals() {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.cssText = `overflow: auto; `;
     };
-  }, [isMobileModalOpen, handleClickClose, dispatch]);
+  }, [isMobileModalOpen, isModalOpenAddWord, handleClickClose, dispatch]);
   return createPortal(
-    isMobileModalOpen && (
+    (isMobileModalOpen || isModalOpenAddWord) && (
       <BackdropStyle onClick={handleBackdropClick}>
         {isMobileModalOpen && (
           <MobileModal handleClickClose={handleClickClose} />
+        )}
+        {isModalOpenAddWord && (
+          <AddWordModal handleClickClose={handleClickClose} />
         )}
       </BackdropStyle>
     ),

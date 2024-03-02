@@ -9,6 +9,7 @@ import { getAllCategories, getAllWord } from "../../redux/data/data-operation";
 import { useDictionaryHook } from "components/hooks/dictyonaryHook";
 import { debounce } from "lodash";
 import { PageButtonList } from "components/pageButtonList/pageButtonList";
+import { openModalAddWord } from "../../redux/modals/modal-slice";
 
 export default function DictionaryPage() {
   const dispatch = useDispatch();
@@ -136,7 +137,10 @@ export default function DictionaryPage() {
             <span className="NumberCountWord">{data.results.length}</span>
           </p>
           <ul className="ButtonList">
-            <li className="ButtonItem">
+            <li
+              className="ButtonItem"
+              onClick={() => dispatch(openModalAddWord())}
+            >
               Add word <Plus />
             </li>
             <li className="ButtonItem">

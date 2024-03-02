@@ -14,6 +14,9 @@ export default function Layout() {
   const isMobileModalOpen = useSelector(
     (state) => state.modal.isModalOpenMobile
   );
+  const isModalOpenAddWord = useSelector(
+    (state) => state.modal.isModalOpenAddWord
+  );
   const userName = useSelector((state) => state.auth.name);
 
   const handleSubmit = () => {
@@ -67,7 +70,7 @@ export default function Layout() {
       <Suspense fallback={<div>Loading...</div>}>
         <Outlet />
       </Suspense>
-      {isMobileModalOpen && <Modals />}
+      {(isMobileModalOpen || isModalOpenAddWord) && <Modals />}
       {/* <Footer /> */}
     </>
   );
