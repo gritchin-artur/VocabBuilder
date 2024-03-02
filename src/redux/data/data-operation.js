@@ -27,7 +27,7 @@ export const getAllWord = createAsyncThunk(
       keyword: formData.filters,
       category: formData.statistics,
       isIrregular: formData.isIrregular,
-      page: 1,
+      page: formData.page,
       limit: 7,
     };
 

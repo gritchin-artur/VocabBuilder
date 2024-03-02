@@ -195,25 +195,4 @@ export const DictionaryPageContainer = styled.div`
   .WordList:nth-child(odd) {
     background-color: #ffffff;
   }
-
-  .PageList {
-    margin-top: 32px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-
-  .PageButton {
-    border: 1px solid rgba(18, 20, 23, 0.1);
-    border-radius: 8px;
-    width: 32px;
-    height: 32px;
-
-    justify-content: center;
-    display: flex;
-    align-items: center;
-
-    font-weight: 600;
-    font-size: 13px;
-  }
 `;
