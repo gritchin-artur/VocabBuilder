@@ -41,3 +41,21 @@ export const getAllWord = createAsyncThunk(
     }
   }
 );
+
+export const createWord = createAsyncThunk(
+  "/words/create",
+  async (formData, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    try {
+      const response = await axios.post("/words/create", formData);
+      token.set(persistedToken);
+      toast.success(`Succsess created  ${response.data.en}`);
+      return response.data;
+    } catch (error) {
+      toast.error("Oops. Something went wrong. Please try again.");
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);

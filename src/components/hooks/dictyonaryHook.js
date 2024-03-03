@@ -1,6 +1,8 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 
 export const useDictionaryHook = () => {
+  const categories = useSelector((state) => state.data.categories);
   const CategoriesItem = [
     "Verb",
     "Participle",
@@ -53,5 +55,5 @@ export const useDictionaryHook = () => {
     };
   }, []);
 
-  return { CategoriesItem };
+  return { CategoriesItem, categories };
 };

@@ -21,11 +21,10 @@ export default function DictionaryPage() {
   });
   const [isVerb, setIsVerb] = useState(false);
 
-  const { CategoriesItem } = useDictionaryHook();
-  console.log(CategoriesItem);
+  const { categories } = useDictionaryHook();
   const data = useSelector((state) => state.data.words);
-  const categories = useSelector((state) => state.data.categories);
-  const token = useSelector((state) => state.auth.token);
+  // const categories = useSelector((state) => state.data.categories);
+  // const token = useSelector((state) => state.auth.token);
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
@@ -45,7 +44,7 @@ export default function DictionaryPage() {
       [name]: value.trim(),
     });
     console.log("values=>", formData, isVerb);
-    console.log(token);
+    // console.log(token);
   };
 
   const handleListItemClick = (value) => {
@@ -134,7 +133,9 @@ export default function DictionaryPage() {
         <div className="CountContainer">
           <p className="CountWord">
             To study:
-            <span className="NumberCountWord">{data.results.length}</span>
+            <span className="NumberCountWord">
+              {data.results && data.results.length}
+            </span>
           </p>
           <ul className="ButtonList">
             <li
