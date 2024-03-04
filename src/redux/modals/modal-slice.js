@@ -5,8 +5,9 @@ const modalSlice = createSlice({
   initialState: {
     isModalOpenMobile: false,
     isModalOpenAddWord: false,
-    isModalOpenTrainOneseif: false,
-    // isBookTrialLesson: [],
+    isModalOpenClickWord: false,
+    clickWordCoordinates: { x: 0, y: 0 },
+    clickWordId: [],
   },
   reducers: {
     openModalMobile: (state) => {
@@ -21,11 +22,16 @@ const modalSlice = createSlice({
     closeModalAddWord: (state) => {
       state.isModalOpenAddWord = false;
     },
-    openModalTrainOneseif: (state) => {
-      state.isModalOpenTrialLesson = true;
+    // openModalClickWord: (state) => {
+    //   state.isModalOpenClickWord = true;
+    // },
+    openModalClickWord: (state, action) => {
+      state.isModalOpenClickWord = true;
+      state.clickWordCoordinates = action.payload;
+      state.clickWordId = action.payload.wordId;
     },
-    closeModalTrainOneseif: (state) => {
-      state.isModalOpenTrialLesson = false;
+    closeModalClickWord: (state) => {
+      state.isModalOpenClickWord = false;
     },
     // addBookTrialLesson(state, { payload }) {
     //   state.isBookTrialLesson.splice(0, 1, payload);
@@ -40,7 +46,7 @@ export const {
   closeModalMobile,
   openModalAddWord,
   closeModalAddWord,
-  openModalTrainOneseif,
-  closeModalTrainOneseif,
+  openModalClickWord,
+  closeModalClickWord,
   // addBookTrialLesson,
 } = modalSlice.actions;

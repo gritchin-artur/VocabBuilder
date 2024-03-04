@@ -3,6 +3,7 @@ import { createSlice, isAnyOf } from "@reduxjs/toolkit";
 import authOperations from "./auth-operations";
 
 const initialState = {
+  id: null,
   name: null,
   email: null,
   token: null,

@@ -5,11 +5,15 @@ import { ReactComponent as Switch } from "../../img/switch-horizontal-01 (1).svg
 import { ReactComponent as Ukraine } from "../../img/ukraine.svg";
 import { ReactComponent as England } from "../../img/united kingdom.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories, getAllWord } from "../../redux/data/data-operation";
+import { getAllCategories, ownWord } from "../../redux/data/data-operation";
 import { useDictionaryHook } from "components/hooks/dictyonaryHook";
 import { debounce } from "lodash";
 import { PageButtonList } from "components/pageButtonList/pageButtonList";
-import { openModalAddWord } from "../../redux/modals/modal-slice";
+import {
+  openModalAddWord,
+  openModalClickWord,
+} from "../../redux/modals/modal-slice";
+import { NavLink } from "react-router-dom";
 
 export default function DictionaryPage() {
   const dispatch = useDispatch();
@@ -28,14 +32,14 @@ export default function DictionaryPage() {
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
-      dispatch(getAllWord(formData));
+      dispatch(ownWord(formData));
     }, 300)
   );
 
   useEffect(() => {
     delayedDispatchRef.current(formData);
     dispatch(getAllCategories());
-  }, [dispatch, formData]);
+  }, [dispatch, formData, data]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -43,8 +47,6 @@ export default function DictionaryPage() {
       ...formData,
       [name]: value.trim(),
     });
-    console.log("values=>", formData, isVerb);
-    // console.log(token);
   };
 
   const handleListItemClick = (value) => {
@@ -60,6 +62,11 @@ export default function DictionaryPage() {
       ...prevState,
       isIrregular: boolean,
     }));
+  };
+
+  const handleClickWord = (event, word) => {
+    const { clientX, clientY } = event;
+    dispatch(openModalClickWord({ x: clientX, y: clientY, wordId: word }));
   };
 
   return (
@@ -144,8 +151,10 @@ export default function DictionaryPage() {
             >
               Add word <Plus />
             </li>
-            <li className="ButtonItem">
-              Train oneself <Switch />
+            <li>
+              <NavLink className="ButtonItem" to="/training">
+                Train oneself <Switch />
+              </NavLink>
             </li>
           </ul>
         </div>
@@ -169,9 +178,12 @@ export default function DictionaryPage() {
             </tr>
           </thead>
           {data.results &&
-            data.results.map(({ en, ua, category, isIrregular }, item) => (
+            data.results.map(({ en, ua, category, isIrregular, _id }, item) => (
               <tbody key={item}>
-                <tr className="WordList">
+                <tr
+                  className="WordList"
+                  onClick={(event) => handleClickWord(event, { en, _id })}
+                >
                   <td className="TableHeaderItem">{en}</td>
                   <td className="TableHeaderItem">{ua}</td>
                   <td className="TableHeaderItem">{category}</td>

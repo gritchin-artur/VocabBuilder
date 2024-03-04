@@ -4,6 +4,9 @@ import * as Yup from "yup";
 const passwordRules = /^(?=.*[a-zA-Z]{6})(?=.*\d)[a-zA-Z\d]{7}$/;
 const emailRules = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
+const EnWord = /\b[A-Za-z'-]+(?:\s+[A-Za-z'-]+)*\b/;
+const UaWord = /^(?![A-Za-z])[А-ЯІЄЇҐґа-яієїʼ\s]+$/;
+
 // Длина пароля должна быть не менее 8 символов.
 // Пароль может, но не обязан содержать один из специальный символ (например, !, @, #, $, %, -).
 
@@ -42,4 +45,10 @@ const LessonSchema = Yup.object().shape({
     .required("Required"),
 });
 
-export { SignupSchema, SigninSchema, LessonSchema };
+const AddWordSchema = Yup.object().shape({
+  en: Yup.string().matches(EnWord, "Must be en letter").required("Required"),
+  ua: Yup.string().matches(UaWord, "Must be ua letter").required("Required"),
+  category: Yup.string().required("Required"),
+});
+
+export { SignupSchema, SigninSchema, LessonSchema, AddWordSchema };

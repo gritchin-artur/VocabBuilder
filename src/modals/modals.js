@@ -3,11 +3,13 @@ import { createPortal } from "react-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   closeModalAddWord,
+  closeModalClickWord,
   closeModalMobile,
 } from "../redux/modals/modal-slice";
 import MobileModal from "./mobileModal/mobileModal";
-import { BackdropStyle } from "./modals.styled";
+import { BackdropClickWord, BackdropStyle } from "./modals.styled";
 import { AddWordModal } from "./addWordModal/addWordModal";
+import { ClickWord } from "./clickWord/clickWord";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -19,10 +21,14 @@ export default function Modals() {
   const isModalOpenAddWord = useSelector(
     (state) => state.modal.isModalOpenAddWord
   );
+  const isModalOpenClickWord = useSelector(
+    (state) => state.modal.isModalOpenClickWord
+  );
 
   const handleClickClose = useCallback(() => {
     dispatch(closeModalMobile());
     dispatch(closeModalAddWord());
+    dispatch(closeModalClickWord());
   }, [dispatch]);
 
   const handleBackdropClick = (e) => {
@@ -45,18 +51,31 @@ export default function Modals() {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.cssText = `overflow: auto; `;
     };
-  }, [isMobileModalOpen, isModalOpenAddWord, handleClickClose, dispatch]);
+  }, [
+    isMobileModalOpen,
+    isModalOpenAddWord,
+    isModalOpenClickWord,
+    handleClickClose,
+    dispatch,
+  ]);
   return createPortal(
-    (isMobileModalOpen || isModalOpenAddWord) && (
-      <BackdropStyle onClick={handleBackdropClick}>
-        {isMobileModalOpen && (
-          <MobileModal handleClickClose={handleClickClose} />
-        )}
-        {isModalOpenAddWord && (
-          <AddWordModal handleClickClose={handleClickClose} />
-        )}
-      </BackdropStyle>
-    ),
+    <>
+      {(isMobileModalOpen || isModalOpenAddWord) && (
+        <BackdropStyle onClick={handleBackdropClick}>
+          {isMobileModalOpen && (
+            <MobileModal handleClickClose={handleClickClose} />
+          )}
+          {isModalOpenAddWord && (
+            <AddWordModal handleClickClose={handleClickClose} />
+          )}
+        </BackdropStyle>
+      )}
+      {isModalOpenClickWord && (
+        <BackdropClickWord onClick={handleBackdropClick}>
+          <ClickWord handleClickClose={handleClickClose} />
+        </BackdropClickWord>
+      )}
+    </>,
     modalRoot
   );
 }

@@ -155,9 +155,11 @@ export const DictionaryPageContainer = styled.div`
   }
 
   .ButtonItem {
+    text-decoration: none;
     display: flex;
     gap: 8px;
     cursor: pointer;
+    color: #121417;
   }
 
   .RadioButtonList {
@@ -282,6 +284,9 @@ export const DictionaryPageContainer = styled.div`
     background-color: #f2f2f2;
   } */
 
+  .WordList {
+    cursor: pointer;
+  }
   .WordList:nth-child(odd) {
     background-color: #ffffff;
   }

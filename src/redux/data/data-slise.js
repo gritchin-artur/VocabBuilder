@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { createWord, getAllCategories, getAllWord } from "./data-operation";
+import { createWord, getAllCategories, ownWord } from "./data-operation";
 
 const initialState = {
   categories: [],
@@ -28,7 +28,7 @@ const dataSlise = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllCategories.fulfilled, handleGetAllCategoriesulfilled)
-      .addCase(getAllWord.fulfilled, handleGetAllWordFulfilled)
+      .addCase(ownWord.fulfilled, handleGetAllWordFulfilled)
       .addCase(createWord.fulfilled, handleCreateWordFulfilled);
   },
 });

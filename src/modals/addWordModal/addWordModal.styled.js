@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import toggle from "../../img/toggle.svg";
+import correct from "../../img/correct.svg";
+import error from "../../img/error.svg";
 
 export const ContainerAddWordModal = styled.div`
   position: relative;
@@ -9,6 +11,15 @@ export const ContainerAddWordModal = styled.div`
 
   background: #85aa9f;
   padding: 18px;
+
+  @media only screen and (min-width: 768px) {
+    box-sizing: border-box;
+    border-radius: 30px;
+    width: 627px;
+    height: 621px;
+
+    padding: 18px 63px;
+  }
 
   .ButtonClose {
     cursor: pointer;
@@ -26,6 +37,11 @@ export const ContainerAddWordModal = styled.div`
     line-height: 117%;
     letter-spacing: -0.02em;
     color: #f8f8f8;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 40px;
+      line-height: 120%;
+    }
   }
 
   .Text {
@@ -35,6 +51,10 @@ export const ContainerAddWordModal = styled.div`
     color: #f8f8f8;
 
     margin-top: 20px;
+
+    @media only screen and (min-width: 768px) {
+      font-size: 25px;
+    }
   }
 
   .Form {
@@ -42,9 +62,14 @@ export const ContainerAddWordModal = styled.div`
     position: relative;
     display: grid;
     gap: 15px;
+    @media only screen and (min-width: 768px) {
+      gap: 20px;
+    }
   }
 
-  .Input {
+  input[id="statistics"],
+  input[id="ukrainian"],
+  input[id="english"] {
     border: 1px solid #d1d5db;
     border-radius: 15px;
     padding: 12px 24px;
@@ -64,6 +89,21 @@ export const ContainerAddWordModal = styled.div`
     }
   }
 
+  input[id="statistics"] {
+    @media only screen and (min-width: 768px) {
+      width: 204px;
+      height: 52px;
+    }
+  }
+
+  input[id="ukrainian"],
+  input[id="english"] {
+    @media only screen and (min-width: 768px) {
+      width: 353px;
+      height: 52px;
+    }
+  }
+
   .custom-inputAdd {
     position: relative;
 
@@ -72,6 +112,10 @@ export const ContainerAddWordModal = styled.div`
       position: absolute;
       top: 14px;
       right: 24px;
+
+      @media only screen and (min-width: 768px) {
+        left: 170px;
+      }
     }
   }
 
@@ -89,7 +133,7 @@ export const ContainerAddWordModal = styled.div`
 
     border-radius: 15px;
     padding: 12px 24px;
-    width: 343px;
+    width: 86%;
     box-shadow: 0 4px 47px 0 rgba(18, 20, 23, 0.08);
     background: #fff;
   }
@@ -108,15 +152,10 @@ export const ContainerAddWordModal = styled.div`
 
   .RadioButtonList {
     position: absolute;
-    top: 60px;
+    top: 65px;
     display: flex;
     gap: 34px;
     left: 14px;
-
-    /* @media only screen and (min-width: 768px) {
-      position: static;
-      margin-left: 20px;
-    } */
   }
 
   .RadioButtonItem {
@@ -150,7 +189,7 @@ export const ContainerAddWordModal = styled.div`
       border-radius: 50%;
       transform: translate(-50%, -50%);
       background-color: #85aa9f;
-      border: 3px solid #fcfcfc;
+      border: 3px solid #80808059;
     }
 
     &:checked:before {
@@ -172,12 +211,21 @@ export const ContainerAddWordModal = styled.div`
 
   .UkrainianContainer[id="ukrainian"] {
     margin-top: 50px;
+    @media only screen and (min-width: 768px) {
+      margin-top: 40px;
+    }
   }
 
   .UkrainianContainer,
   .EnglishContainer {
     display: grid;
     gap: 8px;
+    position: relative;
+
+    @media only screen and (min-width: 768px) {
+      display: flex;
+      gap: 32px;
+    }
   }
   .InputImagContainer {
     display: flex;
@@ -187,12 +235,19 @@ export const ContainerAddWordModal = styled.div`
     font-weight: 500;
     font-size: 14px;
     color: #fcfcfc;
+    @media only screen and (min-width: 768px) {
+      order: 2;
+    }
   }
 
   .ButtonList {
     margin-top: 30px;
     display: flex;
     justify-content: space-between;
+
+    @media only screen and (min-width: 768px) {
+      margin-top: 15px;
+    }
   }
 
   .ButtonAdd {
@@ -207,6 +262,19 @@ export const ContainerAddWordModal = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #121417;
+
+    @media only screen and (min-width: 768px) {
+      border-radius: 30px;
+      padding: 14px 104px;
+      width: 245px;
+      height: 56px;
+
+      display: flex;
+      align-items: center;
+
+      font-size: 23px;
+      line-height: 156%;
+    }
   }
 
   .ButtonCancel {
@@ -221,5 +289,51 @@ export const ContainerAddWordModal = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #fcfcfc;
+
+    @media only screen and (min-width: 768px) {
+      padding: 14px 92px;
+      width: 245px;
+      height: 56px;
+    }
+  }
+
+  .ErrorText {
+    position: absolute;
+    color: red;
+    top: 90px;
+    left: 20px;
+    font-size: 12px;
+    align-items: flex-start;
+    display: flex;
+
+    &::before {
+      content: url(${error});
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      top: 54px;
+    }
+  }
+
+  .SuccessText {
+    position: absolute;
+    color: green;
+    top: 90px;
+    left: 20px;
+    font-size: 12px;
+    align-items: flex-start;
+    display: flex;
+
+    &::before {
+      content: url(${correct});
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      top: 54px;
+    }
   }
 `;

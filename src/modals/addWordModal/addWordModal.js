@@ -2,19 +2,15 @@ import { ContainerAddWordModal } from "./addWordModal.styled";
 import { ReactComponent as ButtonClose } from "../../img/x-modal.svg";
 import { ReactComponent as Ukraine } from "../../img/ukraine.svg";
 import { ReactComponent as England } from "../../img/united kingdom.svg";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { createWord } from "../../redux/data/data-operation";
+import { useFormik } from "formik";
+import { ShowRules } from "utils/showRules";
+import { AddWordSchema } from "utils/validationSchemas";
 
 export function AddWordModal({ handleClickClose }) {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    en: "",
-    ua: "",
-    category: "",
-    isIrregular: undefined,
-  });
-  const [isVerb, setIsVerb] = useState(false);
   const categories = useSelector((state) => state.data.categories);
 
   useEffect(() => {
@@ -28,7 +24,13 @@ export function AddWordModal({ handleClickClose }) {
     };
 
     const handleDropdownItemClick = (item) => {
-      input.value = item.textContent;
+      const selectedCategory = item.textContent;
+      handleChange({
+        target: {
+          name: "category",
+          value: selectedCategory,
+        },
+      });
       dropdown.style.display = "none";
     };
 
@@ -53,36 +55,34 @@ export function AddWordModal({ handleClickClose }) {
       );
       document.removeEventListener("click", handleDocumentClick);
     };
-  }, []);
+  });
 
-  const handleInputChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value.trim(),
-    });
-  };
+  const {
+    values,
+    errors,
+    touched,
+    isValid,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: {
+      en: "",
+      ua: "",
+      category: "",
+      isIrregular: undefined,
+    },
 
-  const handleListItemClick = (value) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      category: value,
-    }));
-    value === "verb" ? setIsVerb(true) : setIsVerb(false);
-  };
+    validationSchema: AddWordSchema,
 
-  const handleIsIrregularClick = (boolean) => {
-    setFormData((prevState) => ({
-      ...prevState,
-      isIrregular: boolean,
-    }));
-  };
+    onSubmit: (values) => {
+      console.log(values);
+      dispatch(createWord(values)).then((response) => {
+        !response.error && handleClickClose();
+      });
+    },
+  });
 
-  const handleClickAdd = () => {
-    dispatch(createWord(formData));
-    console.log(formData);
-    handleClickClose();
-  };
+  const { getInputAlert, getInputClass } = ShowRules(values, touched, errors);
 
   return (
     <ContainerAddWordModal>
@@ -94,26 +94,23 @@ export function AddWordModal({ handleClickClose }) {
           the language base and expanding the vocabulary.
         </p>
       </div>
-      <form className="Form">
+      <form className="Form" onSubmit={handleSubmit}>
         <div className="custom-inputAdd">
           <input
             id="statistics"
             name="category"
-            className="Input"
+            className={getInputClass("Category")}
             type="text"
             placeholder="Categories"
-            value={formData.category}
-            onChange={handleInputChange}
+            value={values.category}
+            onChange={handleChange}
             required
+            readOnly
           />
           <ul className="dropdownAdd">
             {categories &&
               categories.map((item) => (
-                <li
-                  className="ListItem"
-                  key={item}
-                  onClick={() => handleListItemClick(item)}
-                >
+                <li className="ListItem" key={item}>
                   {item}
                 </li>
               ))}
@@ -121,17 +118,19 @@ export function AddWordModal({ handleClickClose }) {
         </div>
         <ul
           className="RadioButtonList"
-          style={{ display: isVerb ? "flex" : "none" }}
+          style={{ display: values.category === "verb" ? "flex" : "none" }}
         >
           <li className="RadioButtonItem">
             <input
               className="RadioButton"
               id="regular"
-              name="regular"
+              name="isIrregular"
               type="radio"
-              onChange={() => handleIsIrregularClick(true)}
-              value={formData.isIrregular}
-              checked={formData.isIrregular === true}
+              onChange={() =>
+                handleChange({ target: { name: "isIrregular", value: true } })
+              }
+              value={true}
+              checked={values.isIrregular === true}
             />
             Regular
           </li>
@@ -139,11 +138,13 @@ export function AddWordModal({ handleClickClose }) {
             <input
               className="RadioButton"
               id="reason"
-              name="reason"
+              name="isIrregular"
               type="radio"
-              onChange={() => handleIsIrregularClick(false)}
-              value={formData.isIrregular}
-              checked={formData.isIrregular === false}
+              onChange={() =>
+                handleChange({ target: { name: "isIrregular", value: false } })
+              }
+              value={false}
+              checked={values.isIrregular === false}
             />
             Irregular
           </li>
@@ -155,14 +156,15 @@ export function AddWordModal({ handleClickClose }) {
           </div>
           <input
             id="ukrainian"
-            className="Input"
+            className={getInputClass("Ua")}
             type="text"
             placeholder="Слово Українською"
             name="ua"
-            value={formData.ua}
-            onChange={handleInputChange}
+            value={values.ua}
+            onChange={handleChange}
             required
           />
+          {getInputAlert("ua")}
         </div>
         <div className="EnglishContainer">
           <div className="InputImagContainer">
@@ -170,18 +172,24 @@ export function AddWordModal({ handleClickClose }) {
           </div>
           <input
             id="english"
-            className="Input"
+            className={getInputClass("En")}
             type="text"
             placeholder="Word in English"
             name="en"
-            value={formData.en}
-            onChange={handleInputChange}
+            value={values.en}
+            onChange={handleChange}
             required
           />
+          {getInputAlert("en")}
         </div>
 
         <ul className="ButtonList">
-          <li className="ButtonAdd" onClick={handleClickAdd}>
+          <li
+            className="ButtonAdd"
+            type="submit"
+            disabled={!isValid}
+            onClick={handleSubmit}
+          >
             Add
           </li>
           <li className="ButtonCancel" onClick={handleClickClose}>
