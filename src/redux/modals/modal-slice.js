@@ -6,6 +6,8 @@ const modalSlice = createSlice({
     isModalOpenMobile: false,
     isModalOpenAddWord: false,
     isModalOpenClickWord: false,
+    isModalOpenConfirmation: false,
+    isModalOpenEdit: false,
     clickWordCoordinates: { x: 0, y: 0 },
     clickWordId: [],
   },
@@ -22,9 +24,6 @@ const modalSlice = createSlice({
     closeModalAddWord: (state) => {
       state.isModalOpenAddWord = false;
     },
-    // openModalClickWord: (state) => {
-    //   state.isModalOpenClickWord = true;
-    // },
     openModalClickWord: (state, action) => {
       state.isModalOpenClickWord = true;
       state.clickWordCoordinates = action.payload;
@@ -33,9 +32,18 @@ const modalSlice = createSlice({
     closeModalClickWord: (state) => {
       state.isModalOpenClickWord = false;
     },
-    // addBookTrialLesson(state, { payload }) {
-    //   state.isBookTrialLesson.splice(0, 1, payload);
-    // },
+    openModalConfirmation: (state) => {
+      state.isModalOpenConfirmation = true;
+    },
+    closeModalConfirmation: (state) => {
+      state.isModalOpenConfirmation = false;
+    },
+    openModalEdit: (state) => {
+      state.isModalOpenEdit = true;
+    },
+    closeModalEdil: (state) => {
+      state.isModalOpenEdit = false;
+    },
   },
 });
 
@@ -48,5 +56,8 @@ export const {
   closeModalAddWord,
   openModalClickWord,
   closeModalClickWord,
-  // addBookTrialLesson,
+  openModalConfirmation,
+  closeModalConfirmation,
+  openModalEdit,
+  closeModalEdil,
 } = modalSlice.actions;

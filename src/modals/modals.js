@@ -4,12 +4,16 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   closeModalAddWord,
   closeModalClickWord,
+  closeModalConfirmation,
+  closeModalEdil,
   closeModalMobile,
 } from "../redux/modals/modal-slice";
 import MobileModal from "./mobileModal/mobileModal";
 import { BackdropClickWord, BackdropStyle } from "./modals.styled";
 import { AddWordModal } from "./addWordModal/addWordModal";
 import { ClickWord } from "./clickWord/clickWord";
+import { EditModal } from "./editModal/editModal";
+import { ConfirmationModal } from "./confirmation/confirmationModal";
 
 const modalRoot = document.querySelector("#modal-root");
 
@@ -24,11 +28,17 @@ export default function Modals() {
   const isModalOpenClickWord = useSelector(
     (state) => state.modal.isModalOpenClickWord
   );
+  const isModalOpenConfirmation = useSelector(
+    (state) => state.modal.isModalOpenConfirmation
+  );
+  const isModalOpenEdit = useSelector((state) => state.modal.isModalOpenEdit);
 
   const handleClickClose = useCallback(() => {
     dispatch(closeModalMobile());
     dispatch(closeModalAddWord());
     dispatch(closeModalClickWord());
+    dispatch(closeModalEdil());
+    dispatch(closeModalConfirmation());
   }, [dispatch]);
 
   const handleBackdropClick = (e) => {
@@ -55,12 +65,17 @@ export default function Modals() {
     isMobileModalOpen,
     isModalOpenAddWord,
     isModalOpenClickWord,
+    isModalOpenConfirmation,
+    isModalOpenEdit,
     handleClickClose,
     dispatch,
   ]);
   return createPortal(
     <>
-      {(isMobileModalOpen || isModalOpenAddWord) && (
+      {(isMobileModalOpen ||
+        isModalOpenAddWord ||
+        isModalOpenEdit ||
+        isModalOpenConfirmation) && (
         <BackdropStyle onClick={handleBackdropClick}>
           {isMobileModalOpen && (
             <MobileModal handleClickClose={handleClickClose} />
@@ -68,6 +83,10 @@ export default function Modals() {
           {isModalOpenAddWord && (
             <AddWordModal handleClickClose={handleClickClose} />
           )}
+          {isModalOpenConfirmation && (
+            <ConfirmationModal handleClickClose={handleClickClose} />
+          )}
+          {isModalOpenEdit && <EditModal handleClickClose={handleClickClose} />}
         </BackdropStyle>
       )}
       {isModalOpenClickWord && (

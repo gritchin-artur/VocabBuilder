@@ -70,7 +70,7 @@ export const deleteWord = createAsyncThunk(
     try {
       const response = await axios.delete(`/words/delete/${wordDelete._id}`);
       token.set(persistedToken);
-      toast.success(`Succsess delete  ${response.wordDelete.en}`);
+      toast.success(`Succsess delete  ${wordDelete.en}`);
       return response.data;
     } catch (error) {
       toast.error("Oops. Something went wrong. Please try again.");
