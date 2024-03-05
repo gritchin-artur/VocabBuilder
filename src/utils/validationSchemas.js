@@ -51,4 +51,15 @@ const AddWordSchema = Yup.object().shape({
   category: Yup.string().required("Required"),
 });
 
-export { SignupSchema, SigninSchema, LessonSchema, AddWordSchema };
+const EditWordSchema = Yup.object().shape({
+  en: Yup.string().matches(EnWord, "Must be en letter").required("Required"),
+  ua: Yup.string().matches(UaWord, "Must be ua letter").required("Required"),
+});
+
+export {
+  SignupSchema,
+  SigninSchema,
+  LessonSchema,
+  AddWordSchema,
+  EditWordSchema,
+};

@@ -27,6 +27,10 @@ const modalPersistConfig = {
     "isModalOpenMobile",
     "isModalOpenAddWord",
     "isModalOpenTrainOneseif",
+    "isModalOpenConfirmation",
+    "isModalOpenEdit",
+    "clickWordCoordinates",
+    "clickWordId",
   ],
 };
 

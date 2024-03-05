@@ -65,12 +65,32 @@ export const deleteWord = createAsyncThunk(
   async (wordDelete, thunkAPI) => {
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
-    console.log(wordDelete._id);
 
     try {
       const response = await axios.delete(`/words/delete/${wordDelete._id}`);
       token.set(persistedToken);
       toast.success(`Succsess delete  ${wordDelete.en}`);
+      return response.data;
+    } catch (error) {
+      toast.error("Oops. Something went wrong. Please try again.");
+      return thunkAPI.rejectWithValue(error.message);
+    }
+  }
+);
+
+export const editWord = createAsyncThunk(
+  "/words/edit",
+  async (wordEdit, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    try {
+      const response = await axios.patch(
+        `/words/edit/${wordEdit.id}`,
+        wordEdit.edit
+      );
+      token.set(persistedToken);
+      toast.success(`Succsess edit  ${wordEdit.en}`);
       return response.data;
     } catch (error) {
       toast.error("Oops. Something went wrong. Please try again.");

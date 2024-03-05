@@ -75,7 +75,6 @@ export function AddWordModal({ handleClickClose }) {
     validationSchema: AddWordSchema,
 
     onSubmit: (values) => {
-      console.log(values);
       dispatch(createWord(values)).then((response) => {
         !response.error && handleClickClose();
       });

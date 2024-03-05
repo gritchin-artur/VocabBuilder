@@ -66,7 +66,13 @@ export default function DictionaryPage() {
 
   const handleClickWord = (event, word) => {
     const { clientX, clientY } = event;
-    dispatch(openModalClickWord({ x: clientX, y: clientY, wordId: word }));
+    dispatch(
+      openModalClickWord({
+        x: clientX,
+        y: clientY,
+        wordId: word,
+      })
+    );
   };
 
   return (
@@ -178,17 +184,17 @@ export default function DictionaryPage() {
             </tr>
           </thead>
           {data.results &&
-            data.results.map(({ en, ua, category, isIrregular, _id }, item) => (
+            data.results.map((word, item) => (
               <tbody key={item}>
                 <tr
                   className="WordList"
-                  onClick={(event) => handleClickWord(event, { en, _id })}
+                  onClick={(event) => handleClickWord(event, word)}
                 >
-                  <td className="TableHeaderItem">{en}</td>
-                  <td className="TableHeaderItem">{ua}</td>
-                  <td className="TableHeaderItem">{category}</td>
+                  <td className="TableHeaderItem">{word.en}</td>
+                  <td className="TableHeaderItem">{word.ua}</td>
+                  <td className="TableHeaderItem">{word.category}</td>
                   <td className="TableHeaderItem">
-                    {isIrregular ? "Регулярний" : "Нерегулярний"}
+                    {word.isIrregular ? "Регулярний" : "Нерегулярний"}
                   </td>
                 </tr>
               </tbody>
