@@ -11,8 +11,15 @@ const register = createAsyncThunk(
       toast.success(`Hello ${credentials.name}`);
       return data;
     } catch (error) {
-      toast.error(error.message);
-      return thunkAPI.rejectWithValue(error.message);
+      if (error.response && error.response.status === 409) {
+        return toast.error("Such email already exists");
+      }
+      if (error.response && error.response.status === 404) {
+        return toast.error("Service not found");
+      }
+      if (error.response && error.response.status === 500) {
+        return toast.error("Server error");
+      }
     }
   }
 );
@@ -24,8 +31,15 @@ const logIn = createAsyncThunk("auth/signin", async (credentials, thunkAPI) => {
     toast.success(`Hello ${data.name}`);
     return data;
   } catch (error) {
-    toast.error("Incorrect email or password!");
-    return thunkAPI.rejectWithValue(error.message);
+    if (error.response && error.response.status === 401) {
+      return toast.error("Email or password invalid");
+    }
+    if (error.response && error.response.status === 404) {
+      return toast.error("Service not found");
+    }
+    if (error.response && error.response.status === 500) {
+      return toast.error("Server error");
+    }
   }
 });
 
@@ -36,7 +50,12 @@ const logOut = createAsyncThunk("auth/signout", async (_, thunkAPI) => {
     toast.success(`Buy`);
     return data;
   } catch (error) {
-    return thunkAPI.rejectWithValue(error.message);
+    if (error.response && error.response.status === 404) {
+      return toast.error("Service not found");
+    }
+    if (error.response && error.response.status === 500) {
+      return toast.error("Server error");
+    }
   }
 });
 

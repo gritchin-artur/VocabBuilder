@@ -37,7 +37,7 @@ const modalPersistConfig = {
 const dataPersistConfig = {
   key: "data",
   storage,
-  whitelist: ["words", "categories"],
+  whitelist: ["words", "categories", "allWords"],
 };
 
 const rootReducer = combineReducers({

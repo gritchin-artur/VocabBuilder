@@ -11,6 +11,7 @@ import { editWord } from "../../redux/data/data-operation";
 export function EditModal({ handleClickClose }) {
   const dispatch = useDispatch();
   const clickWordId = useSelector((state) => state.modal.clickWordId);
+  console.log(clickWordId);
   const {
     values,
     errors,

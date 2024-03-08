@@ -1,19 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { DictionaryPageContainer } from "./dictionaryPage.styled";
 import { ReactComponent as Plus } from "../../img/plus.svg";
-import { ReactComponent as Switch } from "../../img/switch-horizontal-01 (1).svg";
-import { ReactComponent as Ukraine } from "../../img/ukraine.svg";
-import { ReactComponent as England } from "../../img/united kingdom.svg";
+import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories, ownWord } from "../../redux/data/data-operation";
 import { useDictionaryHook } from "components/hooks/dictyonaryHook";
 import { debounce } from "lodash";
 import { PageButtonList } from "components/pageButtonList/pageButtonList";
-import {
-  openModalAddWord,
-  openModalClickWord,
-} from "../../redux/modals/modal-slice";
+import { openModalAddWord } from "../../redux/modals/modal-slice";
 import { NavLink } from "react-router-dom";
+import { Table } from "components/table/table";
 
 export default function DictionaryPage() {
   const dispatch = useDispatch();
@@ -27,8 +23,6 @@ export default function DictionaryPage() {
 
   const { categories } = useDictionaryHook();
   const data = useSelector((state) => state.data.words);
-  // const categories = useSelector((state) => state.data.categories);
-  // const token = useSelector((state) => state.auth.token);
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
@@ -62,17 +56,6 @@ export default function DictionaryPage() {
       ...prevState,
       isIrregular: boolean,
     }));
-  };
-
-  const handleClickWord = (event, word) => {
-    const { clientX, clientY } = event;
-    dispatch(
-      openModalClickWord({
-        x: clientX,
-        y: clientY,
-        wordId: word,
-      })
-    );
   };
 
   return (
@@ -165,42 +148,7 @@ export default function DictionaryPage() {
           </ul>
         </div>
       </div>
-      <div className="TableContainer">
-        <table className="Table">
-          <thead className="TableHeader">
-            <tr className="TableHeaderList">
-              <th className="TableHeaderItem">
-                <div className="TableImagContainer">
-                  Word <England className="IconCountry" />
-                </div>
-              </th>
-              <th className="TableHeaderItem">
-                <div className="TableImagContainer">
-                  Translation <Ukraine className="IconCountry" />
-                </div>
-              </th>
-              <th className="TableHeaderItem">Category</th>
-              <th className="TableHeaderItem">Progress</th>
-            </tr>
-          </thead>
-          {data.results &&
-            data.results.map((word, item) => (
-              <tbody key={item}>
-                <tr
-                  className="WordList"
-                  onClick={(event) => handleClickWord(event, word)}
-                >
-                  <td className="TableHeaderItem">{word.en}</td>
-                  <td className="TableHeaderItem">{word.ua}</td>
-                  <td className="TableHeaderItem">{word.category}</td>
-                  <td className="TableHeaderItem">
-                    {word.isIrregular ? "Регулярний" : "Нерегулярний"}
-                  </td>
-                </tr>
-              </tbody>
-            ))}
-        </table>
-      </div>
+      <div className="TableContainer">{data && <Table data={data} />}</div>
       {data.totalPages > 1 && (
         <PageButtonList
           data={data}
