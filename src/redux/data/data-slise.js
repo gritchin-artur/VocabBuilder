@@ -1,13 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
-  createWord,
   getAllCategories,
   getAllWord,
   ownWord,
+  statisticsWords,
 } from "./data-operation";
 
 const initialState = {
   categories: [],
+  statistics: [],
   words: [],
   allWords: [],
 };
@@ -16,15 +17,12 @@ const handleGetAllCategoriesulfilled = (state, { payload }) => {
   state.categories = payload;
 };
 
-const handleGetOwnWordFulfilled = (state, { payload }) => {
-  state.words = payload;
+const handleGetStatisticsWordFulfilled = (state, { payload }) => {
+  state.statistics = payload;
 };
 
-const handleCreateWordFulfilled = (state, { payload }) => {
-  state.words = {
-    ...state.words,
-    payload,
-  };
+const handleGetOwnWordFulfilled = (state, { payload }) => {
+  state.words = payload;
 };
 
 const handlegetAllWords = (state, { payload }) => {
@@ -38,8 +36,8 @@ const dataSlise = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(getAllCategories.fulfilled, handleGetAllCategoriesulfilled)
+      .addCase(statisticsWords.fulfilled, handleGetStatisticsWordFulfilled)
       .addCase(ownWord.fulfilled, handleGetOwnWordFulfilled)
-      .addCase(createWord.fulfilled, handleCreateWordFulfilled)
       .addCase(getAllWord.fulfilled, handlegetAllWords);
   },
 });

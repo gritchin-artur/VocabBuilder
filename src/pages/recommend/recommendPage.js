@@ -1,12 +1,10 @@
 import { useEffect, useRef, useState } from "react";
-// import { ReactComponent as Plus } from "../../img/plus.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories, getAllWord } from "../../redux/data/data-operation";
 import { useDictionaryHook } from "components/hooks/dictyonaryHook";
 import { debounce } from "lodash";
 import { PageButtonList } from "components/pageButtonList/pageButtonList";
-// import { openModalAddWord } from "../../redux/modals/modal-slice";
 import { NavLink } from "react-router-dom";
 import { Table } from "components/table/table";
 import { RecommendPageContainer } from "./recommendPage.styled";
@@ -33,7 +31,7 @@ export default function RecommendPage() {
   useEffect(() => {
     delayedDispatchRef.current(formData);
     dispatch(getAllCategories());
-  }, [dispatch, formData, allWords]);
+  }, [dispatch, formData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -134,12 +132,6 @@ export default function RecommendPage() {
             </span>
           </p>
           <ul className="ButtonList">
-            {/* <li
-              className="ButtonItem"
-              onClick={() => dispatch(openModalAddWord())}
-            >
-              Add word <Plus />
-            </li> */}
             <li>
               <NavLink className="ButtonItem" to="/training">
                 Train oneself <Switch />

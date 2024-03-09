@@ -27,9 +27,9 @@ export default function RegisterPage() {
     validationSchema: SignupSchema,
 
     onSubmit: (values) => {
-      dispatch(authOperations.register(values)).then(() =>
-        navigate("/dictionary")
-      );
+      dispatch(authOperations.register(values)).then((data) => {
+        data.name && navigate("/dictionary");
+      });
     },
   });
 

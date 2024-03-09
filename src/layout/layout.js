@@ -1,4 +1,4 @@
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { ReactComponent as Logo } from "../img/Craftwork.svg";
 import { ReactComponent as User } from "../img/gridicons_user-2.svg";
 import { ReactComponent as Burger } from "../img/Nav.svg";
@@ -11,6 +11,7 @@ import Modals from "modals/modals";
 
 export default function Layout() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const isMobileModalOpen = useSelector(
     (state) => state.modal.isModalOpenMobile
   );
@@ -27,7 +28,7 @@ export default function Layout() {
   const userName = useSelector((state) => state.auth.name);
 
   const handleSubmit = () => {
-    dispatch(authOperations.logOut());
+    dispatch(authOperations.logOut()).then(navigate("/"));
   };
   return (
     <>

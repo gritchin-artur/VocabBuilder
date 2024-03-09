@@ -32,7 +32,15 @@ export const App = () => {
         <Suspense fallback={<p>Загружаем...</p>}>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index exact element={<HomePage />} />
+              <Route
+                index
+                exact
+                element={
+                  <PublicRoute>
+                    <HomePage />
+                  </PublicRoute>
+                }
+              />
               <Route
                 path="dictionary"
                 element={

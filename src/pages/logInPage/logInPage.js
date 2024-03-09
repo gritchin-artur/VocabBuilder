@@ -26,8 +26,8 @@ export default function LogInPage() {
     validationSchema: SigninSchema,
 
     onSubmit: (values) => {
-      dispatch(authOperations.logIn(values)).then((response) => {
-        !response.error && navigate("/dictionary");
+      dispatch(authOperations.logIn(values)).then((data) => {
+        data.name && navigate("/dictionary");
       });
     },
   });
@@ -84,7 +84,7 @@ export default function LogInPage() {
             disabled={!isValid}
             onClick={handleSubmit}
           >
-            Register
+            Login
           </button>
         </form>
       </div>

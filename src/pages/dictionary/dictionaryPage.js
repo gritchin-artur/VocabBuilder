@@ -3,7 +3,11 @@ import { DictionaryPageContainer } from "./dictionaryPage.styled";
 import { ReactComponent as Plus } from "../../img/plus.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllCategories, ownWord } from "../../redux/data/data-operation";
+import {
+  getAllCategories,
+  ownWord,
+  statisticsWords,
+} from "../../redux/data/data-operation";
 import { useDictionaryHook } from "components/hooks/dictyonaryHook";
 import { debounce } from "lodash";
 import { PageButtonList } from "components/pageButtonList/pageButtonList";
@@ -23,6 +27,7 @@ export default function DictionaryPage() {
 
   const { categories } = useDictionaryHook();
   const data = useSelector((state) => state.data.words);
+  const statistics = useSelector((state) => state.data.statistics);
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
@@ -33,6 +38,7 @@ export default function DictionaryPage() {
   useEffect(() => {
     delayedDispatchRef.current(formData);
     dispatch(getAllCategories());
+    dispatch(statisticsWords());
   }, [dispatch, formData, data]);
 
   const handleInputChange = (event) => {
@@ -130,7 +136,7 @@ export default function DictionaryPage() {
           <p className="CountWord">
             To study:
             <span className="NumberCountWord">
-              {data.results && data.results.length}
+              {statistics && statistics.totalCount}
             </span>
           </p>
           <ul className="ButtonList">

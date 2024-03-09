@@ -22,6 +22,27 @@ export const getAllCategories = createAsyncThunk(
   }
 );
 
+export const statisticsWords = createAsyncThunk(
+  "/words/statistics/",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    try {
+      const response = await axios.get(`/words/statistics`);
+      token.set(persistedToken);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return toast.error("Service not found");
+      }
+      if (error.response && error.response.status === 500) {
+        return toast.error("Server error");
+      }
+    }
+  }
+);
+
 export const ownWord = createAsyncThunk(
   "/words/own",
   async (formData, thunkAPI) => {
