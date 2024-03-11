@@ -28,7 +28,7 @@ export default function RegisterPage() {
 
     onSubmit: (values) => {
       dispatch(authOperations.register(values)).then((data) => {
-        data.name && navigate("/dictionary");
+        data.payload.name && navigate("/dictionary");
       });
     },
   });

@@ -25,6 +25,9 @@ export default function Layout() {
     (state) => state.modal.isModalOpenConfirmation
   );
   const isModalOpenEdit = useSelector((state) => state.modal.isModalOpenEdit);
+  const isModalOpenWellDone = useSelector(
+    (state) => state.modal.isModalOpenWellDone
+  );
   const userName = useSelector((state) => state.auth.name);
 
   const handleSubmit = () => {
@@ -82,7 +85,8 @@ export default function Layout() {
         isModalOpenAddWord ||
         isModalOpenClickWord ||
         isModalOpenConfirmation ||
-        isModalOpenEdit) && <Modals />}
+        isModalOpenEdit ||
+        isModalOpenWellDone) && <Modals />}
       {/* <Footer /> */}
     </>
   );

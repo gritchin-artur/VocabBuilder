@@ -3,19 +3,6 @@ import { useSelector } from "react-redux";
 
 export const useDictionaryHook = () => {
   const categories = useSelector((state) => state.data.categories);
-  const CategoriesItem = [
-    "Verb",
-    "Participle",
-    "Noun",
-    "Adjective",
-    "Pronoun",
-    "Numerals",
-    "Adverb",
-    "Preposition",
-    "Conjuction",
-    "Phrasal verb",
-    "Functional phrase",
-  ];
 
   useEffect(() => {
     const customInput = document.querySelector(".custom-input");
@@ -55,5 +42,5 @@ export const useDictionaryHook = () => {
     };
   }, []);
 
-  return { CategoriesItem, categories };
+  return { categories };
 };

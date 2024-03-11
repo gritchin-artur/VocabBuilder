@@ -28,6 +28,9 @@ export const TrainingPageContainer = styled.div`
     position: absolute;
     right: 13px;
     top: 10px;
+    width: 20px;
+    height: 20px;
+    text-align: center;
 
     font-weight: 500;
     font-size: 16px;
@@ -145,6 +148,7 @@ export const TrainingPageContainer = styled.div`
   }
 
   .SaveButton {
+    cursor: pointer;
     box-sizing: border-box;
     border-radius: 30px;
     padding: 16px;
@@ -173,6 +177,7 @@ export const TrainingPageContainer = styled.div`
   }
 
   .CanselButton {
+    cursor: pointer;
     font-weight: 700;
     font-size: 16px;
     color: rgba(18, 20, 23, 0.5);
@@ -180,7 +185,7 @@ export const TrainingPageContainer = styled.div`
     display: flex;
     justify-content: center;
 
-    &:hover {
+    &:focus {
       color: #85aa9f;
     }
 
@@ -195,6 +200,11 @@ export const TrainingPageContainer = styled.div`
       font-size: 18px;
       line-height: 156%;
       color: #85aa9f;
+
+      &:focus {
+        background: #85aa9f;
+        color: #fcfcfc;
+      }
     }
   }
 `;

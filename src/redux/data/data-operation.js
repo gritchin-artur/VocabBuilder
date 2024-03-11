@@ -208,3 +208,51 @@ export const addWord = createAsyncThunk(
     }
   }
 );
+
+export const tasksWords = createAsyncThunk(
+  "/words/tasks/",
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    try {
+      const response = await axios.get(`/words/tasks`);
+      token.set(persistedToken);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 404) {
+        return toast.error("Service not found");
+      }
+      if (error.response && error.response.status === 500) {
+        return toast.error("Server error");
+      }
+    }
+  }
+);
+
+export const answersWord = createAsyncThunk(
+  "/words/answers",
+  async (answers, thunkAPI) => {
+    const state = thunkAPI.getState();
+    const persistedToken = state.auth.token;
+
+    try {
+      const response = await axios.post("/words/answers", answers);
+      token.set(persistedToken);
+      return response.data;
+    } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Incorrect answer");
+      }
+      if (error.response && error.response.status === 401) {
+        return toast.error("Such a word exists");
+      }
+      if (error.response && error.response.status === 404) {
+        return toast.error("Service not found");
+      }
+      if (error.response && error.response.status === 500) {
+        return toast.error("Server error");
+      }
+    }
+  }
+);

@@ -8,6 +8,7 @@ const modalSlice = createSlice({
     isModalOpenClickWord: false,
     isModalOpenConfirmation: false,
     isModalOpenEdit: false,
+    isModalOpenWellDone: false,
     clickWordCoordinates: { x: 0, y: 0 },
     clickWordId: [],
   },
@@ -44,6 +45,12 @@ const modalSlice = createSlice({
     closeModalEdil: (state) => {
       state.isModalOpenEdit = false;
     },
+    openModalWellDone: (state) => {
+      state.isModalOpenWellDone = true;
+    },
+    closeModalWellDone: (state) => {
+      state.isModalOpenWellDone = false;
+    },
   },
 });
 
@@ -60,4 +67,6 @@ export const {
   closeModalConfirmation,
   openModalEdit,
   closeModalEdil,
+  openModalWellDone,
+  closeModalWellDone,
 } = modalSlice.actions;

@@ -27,7 +27,7 @@ export default function LogInPage() {
 
     onSubmit: (values) => {
       dispatch(authOperations.logIn(values)).then((data) => {
-        data.name && navigate("/dictionary");
+        data.payload.name && navigate("/dictionary");
       });
     },
   });

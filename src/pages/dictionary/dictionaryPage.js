@@ -28,6 +28,10 @@ export default function DictionaryPage() {
   const { categories } = useDictionaryHook();
   const data = useSelector((state) => state.data.words);
   const statistics = useSelector((state) => state.data.statistics);
+  const isLoadingWords = useSelector((state) => state.data.isLoadingWords);
+  const isLoadingCategories = useSelector(
+    (state) => state.data.isLoadingCategories
+  );
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
@@ -39,7 +43,7 @@ export default function DictionaryPage() {
     delayedDispatchRef.current(formData);
     dispatch(getAllCategories());
     dispatch(statisticsWords());
-  }, [dispatch, formData, data]);
+  }, [dispatch, formData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -90,7 +94,7 @@ export default function DictionaryPage() {
               onChange={handleInputChange}
             />
             <ul className="dropdown">
-              {categories &&
+              {!isLoadingCategories ? (
                 categories.map((item) => (
                   <li
                     className="ListItem"
@@ -99,7 +103,10 @@ export default function DictionaryPage() {
                   >
                     {item}
                   </li>
-                ))}
+                ))
+              ) : (
+                <div>Looding...</div>
+              )}
             </ul>
           </div>
           <ul
@@ -154,7 +161,9 @@ export default function DictionaryPage() {
           </ul>
         </div>
       </div>
-      <div className="TableContainer">{data && <Table data={data} />}</div>
+      <div className="TableContainer">
+        {!isLoadingWords ? <Table data={data} /> : <div>Looding...</div>}
+      </div>
       {data.totalPages > 1 && (
         <PageButtonList
           data={data}

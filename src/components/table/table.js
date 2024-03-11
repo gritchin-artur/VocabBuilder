@@ -50,11 +50,13 @@ export function Table({ data }) {
           </th>
           <th className="TableHeaderItem">Category</th>
           <th className="TableHeaderItem">
-            {data.results && data.results[0].progress >= 0 ? "Progress" : ""}
+            {data.results.length !== 0 && data.results[0].progress >= 0
+              ? "Progress"
+              : ""}
           </th>
         </tr>
       </thead>
-      {data.results &&
+      {data.results.length ? (
         data.results.map((word, item) => (
           <tbody
             className={data.results[0].progress >= 0 ? "WordOfTable" : ""}
@@ -99,7 +101,14 @@ export function Table({ data }) {
               </td>
             </tr>
           </tbody>
-        ))}
+        ))
+      ) : (
+        <tbody>
+          <tr>
+            <td style={{ fontSize: "30px" }}>You dont have own words</td>
+          </tr>
+        </tbody>
+      )}
     </TableList>
   );
 }

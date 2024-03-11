@@ -31,13 +31,21 @@ const modalPersistConfig = {
     "isModalOpenEdit",
     "clickWordCoordinates",
     "clickWordId",
+    "isModalOpenWellDone",
   ],
 };
 
 const dataPersistConfig = {
   key: "data",
   storage,
-  whitelist: ["words", "categories", "allWords", "statistics"],
+  whitelist: [
+    "words",
+    "categories",
+    "allWords",
+    "statistics",
+    "tasks",
+    "answers",
+  ],
 };
 
 const rootReducer = combineReducers({
