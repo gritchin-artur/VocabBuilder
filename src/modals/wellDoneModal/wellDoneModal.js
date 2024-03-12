@@ -4,7 +4,6 @@ import { useSelector } from "react-redux";
 
 export default function WellDoneModal({ handleClickClose }) {
   const answers = useSelector((state) => state.data.answers);
-  console.log(answers);
   return (
     <WellDoneContainer>
       <ButtonClose className="ButtonClose" onClick={handleClickClose} />
@@ -13,27 +12,27 @@ export default function WellDoneModal({ handleClickClose }) {
         <div className="CorrectAnswerContainer">
           <p className="TitleCorrectAnswer">Сorrect answers: </p>
           <ul className="CorrectAnswerList">
-            {/* {answers.map(
+            {answers.map(
               (correct, item) =>
                 correct.isDone === true && (
                   <li key={item} className="CorrectAnswerItem">
                     {correct[correct.task]}
                   </li>
                 )
-            )} */}
+            )}
           </ul>
         </div>
         <div className="MistakesContainer">
           <p className="TitleMistakes">Mistakes: </p>
           <ul className="MistakesList">
-            {/* {answers.map(
+            {answers.map(
               (mistake, item) =>
                 mistake.isDone === false && (
                   <li key={item} className="MistakesItem">
                     {mistake.task === "en" ? mistake.en : mistake.ua}
                   </li>
                 )
-            )} */}
+            )}
           </ul>
         </div>
         <div className="Img" />

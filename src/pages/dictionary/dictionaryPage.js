@@ -32,6 +32,9 @@ export default function DictionaryPage() {
   const isLoadingCategories = useSelector(
     (state) => state.data.isLoadingCategories
   );
+  const isLoadingStatistics = useSelector(
+    (state) => state.data.isLoadingStatistics
+  );
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
@@ -143,7 +146,7 @@ export default function DictionaryPage() {
           <p className="CountWord">
             To study:
             <span className="NumberCountWord">
-              {statistics && statistics.totalCount}
+              {!isLoadingStatistics && statistics.totalCount}
             </span>
           </p>
           <ul className="ButtonList">

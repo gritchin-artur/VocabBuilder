@@ -43,6 +43,10 @@ export const TableList = styled.table`
     display: flex;
     gap: 10px;
     align-items: center;
+
+    width: 90px;
+    display: flex;
+    justify-content: end;
   }
 
   .AddDictionaryContainer {

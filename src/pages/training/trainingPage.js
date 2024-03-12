@@ -7,17 +7,9 @@ import { tasksWords } from "../../redux/data/data-operation";
 export default function TrainingPage() {
   const dispatch = useDispatch();
   const tasks = useSelector((state) => state.data.tasks);
+  const isLoadingTasks = useSelector((state) => state.data.isLoadingTasks);
   useEffect(() => {
     dispatch(tasksWords());
   }, [dispatch]);
-  console.log(tasks);
-  return (
-    <>
-      {tasks.tasks && tasks.tasks.length === 0 ? (
-        <Training />
-      ) : (
-        <AddWord tasks={tasks.tasks} />
-      )}
-    </>
-  );
+  return <>{isLoadingTasks ? <Training /> : <AddWord tasks={tasks.tasks} />}</>;
 }

@@ -21,6 +21,9 @@ export default function RecommendPage() {
 
   const { categories } = useDictionaryHook();
   const allWords = useSelector((state) => state.data.allWords);
+  const isLoadingAllWords = useSelector(
+    (state) => state.data.isLoadingAllWords
+  );
 
   const delayedDispatchRef = useRef(
     debounce((formData) => {
@@ -141,7 +144,7 @@ export default function RecommendPage() {
         </div>
       </div>
       <div className="TableContainer">
-        {allWords && <Table data={allWords} />}
+        {!isLoadingAllWords ? <Table data={allWords} /> : <div>Loading...</div>}
       </div>
       {allWords.totalPages > 1 && (
         <PageButtonList

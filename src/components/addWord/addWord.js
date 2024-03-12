@@ -5,13 +5,14 @@ import { ReactComponent as England } from "../../img/united kingdom.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalWellDone } from "../../redux/modals/modal-slice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { answersWord } from "../../redux/data/data-operation";
 
 export default function AddWord({ tasks }) {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.data.words);
+  const isLoadingAnswers = useSelector((state) => state.data.isLoadingAnswers);
 
   const [wordItem, setWordItem] = useState(0);
   const [answerTasks, setAnswerTasks] = useState([]);
@@ -32,6 +33,7 @@ export default function AddWord({ tasks }) {
       [name]: value.trim(),
     }));
   };
+
   const handleSubmit = () => {
     if (tasks.length > wordItem) {
       setWordItem((prevItem) => prevItem + 1);
@@ -42,9 +44,13 @@ export default function AddWord({ tasks }) {
         ua: tasks[wordItem + 1]?.ua || "",
         task: tasks[wordItem + 1]?.task,
       }));
-      setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
+      // setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
     }
   };
+
+  useEffect(() => {
+    setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
+  }, [formTasks]);
 
   const handleCancel = () => {
     window.history.back();
@@ -53,11 +59,11 @@ export default function AddWord({ tasks }) {
   const handleSave = () => {
     const { _id, en, ua, task } = formTasks;
     if (_id !== "" || en !== "" || ua !== "" || task !== "") {
-      handleSubmit();
+      // handleSubmit();
       dispatch(
         answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
-      ).then((data) => {
-        data.payload.length > 0 && dispatch(openModalWellDone());
+      ).then(() => {
+        !isLoadingAnswers && dispatch(openModalWellDone());
         console.log(data.payload.length > 0);
       });
     }
