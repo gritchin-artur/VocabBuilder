@@ -44,7 +44,6 @@ export default function AddWord({ tasks }) {
         ua: tasks[wordItem + 1]?.ua || "",
         task: tasks[wordItem + 1]?.task,
       }));
-      // setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
     }
   };
 
@@ -59,7 +58,6 @@ export default function AddWord({ tasks }) {
   const handleSave = () => {
     const { _id, en, ua, task } = formTasks;
     if (_id !== "" || en !== "" || ua !== "" || task !== "") {
-      // handleSubmit();
       dispatch(
         answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
       ).then((data) => {
