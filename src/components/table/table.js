@@ -81,7 +81,7 @@ export function Table({ data }) {
   // }, [dispatch, handleClickWord, data.results]);
 
   return (
-    data && (
+    !data && (
       <TableList>
         <thead className="TableHeader">
           <tr className="TableHeaderList">
