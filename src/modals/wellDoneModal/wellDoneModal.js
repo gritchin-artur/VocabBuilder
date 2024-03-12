@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 export default function WellDoneModal({ handleClickClose }) {
   const answers = useSelector((state) => state.data.answers);
   return (
-    !answers && (
+    answers && (
       <WellDoneContainer>
         <ButtonClose className="ButtonClose" onClick={handleClickClose} />
         <h2 className="Title">Well done</h2>

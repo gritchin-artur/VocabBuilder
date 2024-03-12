@@ -5,14 +5,13 @@ import { ReactComponent as England } from "../../img/united kingdom.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalWellDone } from "../../redux/modals/modal-slice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { answersWord } from "../../redux/data/data-operation";
 
 export default function AddWord({ tasks }) {
   const dispatch = useDispatch();
 
   const data = useSelector((state) => state.data.words);
-  const isLoadingAnswers = useSelector((state) => state.data.isLoadingAnswers);
 
   const [wordItem, setWordItem] = useState(0);
   const [answerTasks, setAnswerTasks] = useState([]);
@@ -35,6 +34,7 @@ export default function AddWord({ tasks }) {
   };
 
   const handleSubmit = () => {
+    setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
     if (tasks.length > wordItem) {
       setWordItem((prevItem) => prevItem + 1);
       setFormTasks((prevFormTasks) => ({
@@ -47,10 +47,6 @@ export default function AddWord({ tasks }) {
     }
   };
 
-  useEffect(() => {
-    setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
-  }, [formTasks]);
-
   const handleCancel = () => {
     window.history.back();
   };
@@ -58,11 +54,12 @@ export default function AddWord({ tasks }) {
   const handleSave = () => {
     const { _id, en, ua, task } = formTasks;
     if (_id !== "" || en !== "" || ua !== "" || task !== "") {
+      handleSubmit();
       dispatch(
         answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
-      ).then((data) => {
-        !isLoadingAnswers && dispatch(openModalWellDone());
-        console.log(data.payload.length > 0);
+      ).then((response) => {
+        isNaN(response.payload) && dispatch(openModalWellDone());
+        console.log(isNaN(response.payload));
       });
     }
   };
