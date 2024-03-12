@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.b6dcfd59.js",
-    "static/js/467.4a446dcb.chunk.js": "/VocabBuilder/static/js/467.4a446dcb.chunk.js",
+    "main.js": "/VocabBuilder/static/js/main.bcb5b2c3.js",
+    "static/js/467.d3ba3a22.chunk.js": "/VocabBuilder/static/js/467.d3ba3a22.chunk.js",
     "static/js/806.c1f0f444.chunk.js": "/VocabBuilder/static/js/806.c1f0f444.chunk.js",
     "static/js/258.ad2f3808.chunk.js": "/VocabBuilder/static/js/258.ad2f3808.chunk.js",
     "static/js/332.a64fe2b1.chunk.js": "/VocabBuilder/static/js/332.a64fe2b1.chunk.js",
     "static/js/585.9edd1d60.chunk.js": "/VocabBuilder/static/js/585.9edd1d60.chunk.js",
     "static/js/873.f7f1352e.chunk.js": "/VocabBuilder/static/js/873.f7f1352e.chunk.js",
-    "static/js/438.847d61ca.chunk.js": "/VocabBuilder/static/js/438.847d61ca.chunk.js",
-    "static/js/821.632ca8ff.chunk.js": "/VocabBuilder/static/js/821.632ca8ff.chunk.js",
-    "static/js/997.dd3ed944.chunk.js": "/VocabBuilder/static/js/997.dd3ed944.chunk.js",
+    "static/js/438.5ffc4fb1.chunk.js": "/VocabBuilder/static/js/438.5ffc4fb1.chunk.js",
+    "static/js/821.60d6941d.chunk.js": "/VocabBuilder/static/js/821.60d6941d.chunk.js",
+    "static/js/997.256dacc7.chunk.js": "/VocabBuilder/static/js/997.256dacc7.chunk.js",
     "static/js/306.c117459c.chunk.js": "/VocabBuilder/static/js/306.c117459c.chunk.js",
     "static/js/410.495f88ae.chunk.js": "/VocabBuilder/static/js/410.495f88ae.chunk.js",
-    "static/js/867.162a1b8e.chunk.js": "/VocabBuilder/static/js/867.162a1b8e.chunk.js",
+    "static/js/867.f5a545df.chunk.js": "/VocabBuilder/static/js/867.f5a545df.chunk.js",
     "static/media/registration-desctop.png": "/VocabBuilder/static/media/registration-desctop.d2e91d2e25044b505a73.png",
     "static/media/blood-report-desctop.png": "/VocabBuilder/static/media/blood-report-desctop.abd0d61f6ee55708d9e9.png",
     "static/media/registration-mobile.png": "/VocabBuilder/static/media/registration-mobile.cab3f1832a1e3f78e770.png",
@@ -40,22 +40,22 @@
     "static/media/Prev.svg": "/VocabBuilder/static/media/Prev.63fd235f4da6423ef0f8732e5e0563d3.svg",
     "static/media/Next.svg": "/VocabBuilder/static/media/Next.006d29148a11265dee03d84c6cd4dd7c.svg",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.b6dcfd59.js.map": "/VocabBuilder/static/js/main.b6dcfd59.js.map",
-    "467.4a446dcb.chunk.js.map": "/VocabBuilder/static/js/467.4a446dcb.chunk.js.map",
+    "main.bcb5b2c3.js.map": "/VocabBuilder/static/js/main.bcb5b2c3.js.map",
+    "467.d3ba3a22.chunk.js.map": "/VocabBuilder/static/js/467.d3ba3a22.chunk.js.map",
     "806.c1f0f444.chunk.js.map": "/VocabBuilder/static/js/806.c1f0f444.chunk.js.map",
     "258.ad2f3808.chunk.js.map": "/VocabBuilder/static/js/258.ad2f3808.chunk.js.map",
     "332.a64fe2b1.chunk.js.map": "/VocabBuilder/static/js/332.a64fe2b1.chunk.js.map",
     "585.9edd1d60.chunk.js.map": "/VocabBuilder/static/js/585.9edd1d60.chunk.js.map",
     "873.f7f1352e.chunk.js.map": "/VocabBuilder/static/js/873.f7f1352e.chunk.js.map",
-    "438.847d61ca.chunk.js.map": "/VocabBuilder/static/js/438.847d61ca.chunk.js.map",
-    "821.632ca8ff.chunk.js.map": "/VocabBuilder/static/js/821.632ca8ff.chunk.js.map",
-    "997.dd3ed944.chunk.js.map": "/VocabBuilder/static/js/997.dd3ed944.chunk.js.map",
+    "438.5ffc4fb1.chunk.js.map": "/VocabBuilder/static/js/438.5ffc4fb1.chunk.js.map",
+    "821.60d6941d.chunk.js.map": "/VocabBuilder/static/js/821.60d6941d.chunk.js.map",
+    "997.256dacc7.chunk.js.map": "/VocabBuilder/static/js/997.256dacc7.chunk.js.map",
     "306.c117459c.chunk.js.map": "/VocabBuilder/static/js/306.c117459c.chunk.js.map",
     "410.495f88ae.chunk.js.map": "/VocabBuilder/static/js/410.495f88ae.chunk.js.map",
-    "867.162a1b8e.chunk.js.map": "/VocabBuilder/static/js/867.162a1b8e.chunk.js.map"
+    "867.f5a545df.chunk.js.map": "/VocabBuilder/static/js/867.f5a545df.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.b6dcfd59.js"
+    "static/js/main.bcb5b2c3.js"
   ]
 }
