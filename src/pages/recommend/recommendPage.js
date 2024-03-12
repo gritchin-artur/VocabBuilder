@@ -141,7 +141,7 @@ export default function RecommendPage() {
         </div>
       </div>
       <div className="TableContainer">
-        {!allWords.length > 0 ? (
+        {allWords ? (
           <Table data={allWords} />
         ) : (
           <div>Oooops samething wrong...</div>

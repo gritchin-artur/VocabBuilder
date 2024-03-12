@@ -33,8 +33,9 @@ export function Table({ data }) {
       })
     );
   };
+  console.log(data);
   return (
-    !data.length > 0 && (
+    data && (
       <TableList>
         <thead className="TableHeader">
           <tr className="TableHeaderList">
@@ -50,11 +51,11 @@ export function Table({ data }) {
             </th>
             <th className="TableHeaderItem">Category</th>
             <th className="TableHeaderItem">
-              {data.results[0].progress >= 0 ? "Progress" : ""}
+              {data.results[0].progress ? "Progress" : ""}
             </th>
           </tr>
         </thead>
-        {data.results.length ? (
+        {data ? (
           data.results.map((word, item) => (
             <tbody
               className={data.results[0].progress >= 0 ? "WordOfTable" : ""}

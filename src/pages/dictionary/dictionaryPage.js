@@ -164,7 +164,7 @@ export default function DictionaryPage() {
         </div>
       </div>
       <div className="TableContainer">
-        {!data.length > 0 ? (
+        {data ? (
           <Table data={data} />
         ) : (
           <div>Opppps something went wrong...</div>
