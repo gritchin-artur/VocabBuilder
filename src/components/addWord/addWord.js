@@ -62,7 +62,7 @@ export default function AddWord({ tasks }) {
       // handleSubmit();
       dispatch(
         answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
-      ).then(() => {
+      ).then((data) => {
         !isLoadingAnswers && dispatch(openModalWellDone());
         console.log(data.payload.length > 0);
       });
@@ -70,67 +70,69 @@ export default function AddWord({ tasks }) {
   };
 
   return (
-    <TrainingPageContainer>
-      <div
-        className="CicleContainer"
-        style={{ visibility: findId ? "visible" : "hidden" }}
-      >
-        <Circle
-          className="Circle"
-          gapPosition="bottom"
-          percent={findId && findId.progress}
-          strokeWidth={8}
-          trailWidth={8}
-          strokeColor={{
-            "0%": "#c9cdcc",
-            "100%": "#85aa9f",
-          }}
-          strokeLinecap="round"
-          gapDegree={0}
-        />
-        <div className="Percent">{findId && findId.progress}</div>
-      </div>
-
-      <form className="Form">
-        <div className="FormContainer">
-          <div id="ukrainian" className="InputContainer">
-            <input
-              className="Input"
-              placeholder="Введіть переклад"
-              value={formTasks.ua}
-              onChange={(e) => handleInputChange(e, "ua")}
-            />
-            {tasks.length > wordItem && (
-              <div className="LangueButton" onClick={handleSubmit}>
-                Next <Switch />
-              </div>
-            )}
-
-            <div className="LangueName">
-              <Ukraine /> Ukrainian
-            </div>
-          </div>
-          <div className="InputContainer">
-            <input
-              className="Input"
-              placeholder="Break in"
-              value={formTasks.en}
-              onChange={(e) => handleInputChange(e, "en")}
-            />
-            <div className="LangueName">
-              <England /> English
-            </div>
-          </div>
+    tasks.length > 0 && (
+      <TrainingPageContainer>
+        <div
+          className="CicleContainer"
+          style={{ visibility: findId ? "visible" : "hidden" }}
+        >
+          <Circle
+            className="Circle"
+            gapPosition="bottom"
+            percent={findId && findId.progress}
+            strokeWidth={8}
+            trailWidth={8}
+            strokeColor={{
+              "0%": "#c9cdcc",
+              "100%": "#85aa9f",
+            }}
+            strokeLinecap="round"
+            gapDegree={0}
+          />
+          <div className="Percent">{findId && findId.progress}</div>
         </div>
-        <ul className="ButtonList">
-          <li className="SaveButton" onClick={handleSave}>
-            Save
-          </li>
-          <li className="CanselButton" onClick={handleCancel}>
-            Cancel
-          </li>
-        </ul>
-      </form>
-    </TrainingPageContainer>
+
+        <form className="Form">
+          <div className="FormContainer">
+            <div id="ukrainian" className="InputContainer">
+              <input
+                className="Input"
+                placeholder="Введіть переклад"
+                value={formTasks.ua}
+                onChange={(e) => handleInputChange(e, "ua")}
+              />
+              {tasks.length > wordItem && (
+                <div className="LangueButton" onClick={handleSubmit}>
+                  Next <Switch />
+                </div>
+              )}
+
+              <div className="LangueName">
+                <Ukraine /> Ukrainian
+              </div>
+            </div>
+            <div className="InputContainer">
+              <input
+                className="Input"
+                placeholder="Break in"
+                value={formTasks.en}
+                onChange={(e) => handleInputChange(e, "en")}
+              />
+              <div className="LangueName">
+                <England /> English
+              </div>
+            </div>
+          </div>
+          <ul className="ButtonList">
+            <li className="SaveButton" onClick={handleSave}>
+              Save
+            </li>
+            <li className="CanselButton" onClick={handleCancel}>
+              Cancel
+            </li>
+          </ul>
+        </form>
+      </TrainingPageContainer>
+    )
   );
 }

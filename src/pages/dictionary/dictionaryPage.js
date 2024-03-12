@@ -28,7 +28,6 @@ export default function DictionaryPage() {
   const { categories } = useDictionaryHook();
   const data = useSelector((state) => state.data.words);
   const statistics = useSelector((state) => state.data.statistics);
-  const isLoadingWords = useSelector((state) => state.data.isLoadingWords);
   const isLoadingCategories = useSelector(
     (state) => state.data.isLoadingCategories
   );
@@ -165,7 +164,11 @@ export default function DictionaryPage() {
         </div>
       </div>
       <div className="TableContainer">
-        {!isLoadingWords ? <Table data={data} /> : <div>Looding...</div>}
+        {!data.length > 0 ? (
+          <Table data={data} />
+        ) : (
+          <div>Opppps something went wrong...</div>
+        )}
       </div>
       {data.totalPages > 1 && (
         <PageButtonList
