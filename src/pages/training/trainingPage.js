@@ -10,5 +10,5 @@ export default function TrainingPage() {
   useEffect(() => {
     dispatch(tasksWords());
   }, [dispatch]);
-  return <>{!tasks ? <AddWord tasks={tasks.tasks} /> : <Training />}</>;
+  return <>{tasks ? <AddWord tasks={tasks.tasks} /> : <Training />}</>;
 }
