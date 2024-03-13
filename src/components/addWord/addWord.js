@@ -29,7 +29,7 @@ export default function AddWord({ tasks }) {
     console.log(value);
     setFormTasks((prevFormTasks) => ({
       ...prevFormTasks,
-      [name]: value.trim(),
+      [name]: value,
     }));
   };
 
