@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { openModalMobile } from "../redux/modals/modal-slice";
 import authOperations from "../redux/auth/auth-operations";
 import Modals from "modals/modals";
+import { Footer } from "modals/footer/footer";
 
 export default function Layout() {
   const dispatch = useDispatch();
@@ -87,7 +88,7 @@ export default function Layout() {
         isModalOpenConfirmation ||
         isModalOpenEdit ||
         isModalOpenWellDone) && <Modals />}
-      {/* <Footer /> */}
+      <Footer />
     </>
   );
 }

@@ -26,7 +26,6 @@ export default function AddWord({ tasks }) {
 
   const handleInputChange = (event, name) => {
     const { value } = event.target;
-    console.log(value);
     setFormTasks((prevFormTasks) => ({
       ...prevFormTasks,
       [name]: value,
@@ -54,13 +53,8 @@ export default function AddWord({ tasks }) {
   const handleSave = () => {
     handleSubmit();
     const updatedAnswerTasks = [...answerTasks, formTasks];
-    console.log(updatedAnswerTasks);
-    dispatch(
-      answersWord(updatedAnswerTasks)
-      // answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
-    ).then((response) => {
+    dispatch(answersWord(updatedAnswerTasks)).then((response) => {
       isNaN(response.payload) && dispatch(openModalWellDone());
-      console.log(isNaN(response.payload));
     });
   };
 
