@@ -34,7 +34,6 @@ export default function AddWord({ tasks }) {
   };
 
   const handleSubmit = () => {
-    setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
     if (tasks.length > wordItem) {
       setWordItem((prevItem) => prevItem + 1);
       setFormTasks((prevFormTasks) => ({
@@ -44,6 +43,7 @@ export default function AddWord({ tasks }) {
         ua: tasks[wordItem + 1]?.ua || "",
         task: tasks[wordItem + 1]?.task,
       }));
+      setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
     }
   };
 
@@ -52,16 +52,16 @@ export default function AddWord({ tasks }) {
   };
 
   const handleSave = () => {
-    const { _id, en, ua, task } = formTasks;
-    if (_id !== "" || en !== "" || ua !== "" || task !== "") {
-      handleSubmit();
-      dispatch(
-        answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
-      ).then((response) => {
-        isNaN(response.payload) && dispatch(openModalWellDone());
-        console.log(isNaN(response.payload));
-      });
-    }
+    handleSubmit();
+    const updatedAnswerTasks = [...answerTasks, formTasks];
+    console.log(updatedAnswerTasks);
+    dispatch(
+      answersWord(updatedAnswerTasks)
+      // answersWord(answerTasks.length === 0 ? [formTasks] : answerTasks)
+    ).then((response) => {
+      isNaN(response.payload) && dispatch(openModalWellDone());
+      console.log(isNaN(response.payload));
+    });
   };
 
   return (
@@ -91,6 +91,7 @@ export default function AddWord({ tasks }) {
           <div className="FormContainer">
             <div id="ukrainian" className="InputContainer">
               <input
+                type="text"
                 className="Input"
                 placeholder="Введіть переклад"
                 value={formTasks.ua}
@@ -108,6 +109,7 @@ export default function AddWord({ tasks }) {
             </div>
             <div className="InputContainer">
               <input
+                type="text"
                 className="Input"
                 placeholder="Break in"
                 value={formTasks.en}
