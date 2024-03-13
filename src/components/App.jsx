@@ -1,7 +1,7 @@
 import GlobalStyled from "createGlobalStyle/createGlobalStyle.styled";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import authOperations from "../redux/auth/auth-operations";
 
@@ -21,9 +21,41 @@ export const App = () => {
     (state) => state.auth.isFetchingCurrentUser
   );
 
+  // useEffect(() => {
+  //   dispatch(authOperations.fetchCurrentUser());
+  // }, [dispatch]);
+
+  const [lastVisitedRoute, setLastVisitedRoute] = useState(
+    localStorage.getItem("lastVisitedRoute") || "/"
+  );
+  // const [lastVisitedRoute, setLastVisitedRoute] = useState("/");
+
+  const { pathname } = useLocation();
+
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
-  }, [dispatch]);
+
+    // Save the current route to localStorage when it changes
+    const handleRouteChange = () => {
+      setLastVisitedRoute(pathname);
+    };
+    window.addEventListener("popstate", handleRouteChange);
+    return () => {
+      window.removeEventListener("popstate", handleRouteChange);
+    };
+  }, [dispatch, pathname]);
+
+  // useEffect(() => {
+  //   const lastRoute = localStorage.getItem("lastVisitedRoute");
+  //   if (lastRoute) {
+  //     setLastVisitedRoute(lastRoute);
+  //   }
+  // }, []);
+
+  useEffect(() => {
+    localStorage.setItem("lastVisitedRoute", lastVisitedRoute);
+  }, [lastVisitedRoute]);
+
   return (
     <>
       {isFetchingCurrentUser ? (
@@ -68,7 +100,7 @@ export const App = () => {
               <Route
                 path="register"
                 element={
-                  <PublicRoute>
+                  <PublicRoute redirectTo="/dictionary" restricted>
                     <RegisterPage />
                   </PublicRoute>
                 }
@@ -76,12 +108,12 @@ export const App = () => {
               <Route
                 path="login"
                 element={
-                  <PublicRoute>
+                  <PublicRoute redirectTo="/dictionary" restricted>
                     <LogInPage />
                   </PublicRoute>
                 }
               />
-              <Route path="*" element={<Navigate to="/" />} />
+              <Route path="*" element={<Navigate to={lastVisitedRoute} />} />
             </Route>
           </Routes>
         </Suspense>

@@ -13,6 +13,7 @@ import { Footer } from "modals/footer/footer";
 export default function Layout() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const isMobileModalOpen = useSelector(
     (state) => state.modal.isModalOpenMobile
   );

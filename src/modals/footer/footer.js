@@ -11,12 +11,18 @@ export function Footer() {
       location.pathname.includes("/recommend") ||
       location.pathname.includes("/training")
     ) {
-      setBackgroundColor("#f8f8f8");
+      return setBackgroundColor("#f8f8f8");
+    }
+    if (
+      location.pathname.includes("/register") ||
+      location.pathname.includes("/login")
+    ) {
+      return setBackgroundColor("none");
     } else {
-      setBackgroundColor("#85aa9f");
+      return setBackgroundColor("#85aa9f");
     }
   }, [location]);
-
+  console.log(backgroundColor);
   return (
     <footer
       style={{
