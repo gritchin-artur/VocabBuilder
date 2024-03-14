@@ -11,6 +11,9 @@ const register = createAsyncThunk(
       toast.success(`Hello ${credentials.name}`);
       return data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Email or password invalid");
+      }
       if (error.response && error.response.status === 409) {
         return toast.error("Such email already exists");
       }
@@ -31,6 +34,9 @@ const logIn = createAsyncThunk("auth/signin", async (credentials, thunkAPI) => {
     toast.success(`Hello ${data.name}`);
     return data;
   } catch (error) {
+    if (error.response && error.response.status === 400) {
+      return toast.error("Email or password invalid");
+    }
     if (error.response && error.response.status === 401) {
       return toast.error("Email or password invalid");
     }

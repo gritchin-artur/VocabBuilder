@@ -5,11 +5,13 @@ import { ReactComponent as England } from "../../img/united kingdom.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalWellDone } from "../../redux/modals/modal-slice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { answersWord } from "../../redux/data/data-operation";
+import { useNavigate } from "react-router-dom";
 
 export default function AddWord({ tasks }) {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const data = useSelector((state) => state.data.words);
 
@@ -22,7 +24,11 @@ export default function AddWord({ tasks }) {
     task: tasks[wordItem]?.task,
   });
 
-  const findId = data.results.find((item) => item._id === formTasks._id);
+  const sumPercent = data.results.reduce((accumulator, currentValue) => {
+    return accumulator + currentValue.progress;
+  }, 0);
+
+  const statistic = Math.round(sumPercent / data.results.length);
 
   const handleInputChange = (event, name) => {
     const { value } = event.target;
@@ -54,21 +60,20 @@ export default function AddWord({ tasks }) {
     handleSubmit();
     const updatedAnswerTasks = [...answerTasks, formTasks];
     dispatch(answersWord(updatedAnswerTasks)).then((response) => {
-      isNaN(response.payload) && dispatch(openModalWellDone());
+      isNaN(response.payload)
+        ? dispatch(openModalWellDone())
+        : navigate("/dictionary");
     });
   };
 
   return (
     tasks.length > 0 && (
       <TrainingPageContainer>
-        <div
-          className="CicleContainer"
-          style={{ visibility: findId ? "visible" : "hidden" }}
-        >
+        <div className="CicleContainer">
           <Circle
             className="Circle"
             gapPosition="bottom"
-            percent={findId && findId.progress}
+            percent={statistic}
             strokeWidth={8}
             trailWidth={8}
             strokeColor={{
@@ -78,7 +83,7 @@ export default function AddWord({ tasks }) {
             strokeLinecap="round"
             gapDegree={0}
           />
-          <div className="Percent">{findId && findId.progress}</div>
+          <div className="Percent">{statistic}</div>
         </div>
 
         <form className="Form">
@@ -91,7 +96,7 @@ export default function AddWord({ tasks }) {
                 value={formTasks.ua}
                 onChange={(e) => handleInputChange(e, "ua")}
               />
-              {tasks.length > wordItem && (
+              {tasks.length - 1 > wordItem && (
                 <div className="LangueButton" onClick={handleSubmit}>
                   Next <Switch />
                 </div>

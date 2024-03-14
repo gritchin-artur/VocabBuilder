@@ -30,6 +30,10 @@ button{
 select {
   -webkit-appearance: none;
 }
+
+div[id="root"]{
+  position: relative;
+}
 `;
 
 export default GlobalStyled;

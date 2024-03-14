@@ -26,8 +26,8 @@ export default function LogInPage() {
     validationSchema: SigninSchema,
 
     onSubmit: (values) => {
-      dispatch(authOperations.logIn(values)).then((data) => {
-        data.payload.name && navigate("/dictionary");
+      dispatch(authOperations.logIn(values)).then((response) => {
+        response.payload.name && navigate("/dictionary");
       });
     },
   });

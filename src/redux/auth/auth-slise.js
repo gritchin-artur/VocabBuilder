@@ -21,6 +21,7 @@ const handleLogOutFulfilled = (state) => {
 
 const handleFetchCurrentUserPending = (state) => {
   state.isRefreshing = true;
+  state.isLoggedIn = false;
 };
 
 const handleFetchCurrentUserFulfilled = (state, { payload }) => {
@@ -32,13 +33,22 @@ const handleFetchCurrentUserFulfilled = (state, { payload }) => {
 
 const handleFetchCurrentUserReject = (state) => {
   state.isFetchingCurrentUser = false;
+  state.isLoggedIn = false;
+};
+
+const handleRegisterLogInPending = (state, { payload }) => {
+  state.isLoggedIn = false;
 };
 
 const handleRegisterLogInFulfilled = (state, { payload }) => {
   state.name = payload.name;
   state.email = payload.email;
   state.token = payload.token;
-  state.isLoggedIn = true;
+  state.isLoggedIn = payload.token ? true : false;
+};
+
+const handleRegisterLogInReject = (state, { payload }) => {
+  state.isLoggedIn = false;
 };
 
 const authSlice = createSlice({
@@ -68,6 +78,20 @@ const authSlice = createSlice({
           authOperations.logIn.fulfilled
         ),
         handleRegisterLogInFulfilled
+      )
+      .addMatcher(
+        isAnyOf(
+          authOperations.register.rejected,
+          authOperations.logIn.rejected
+        ),
+        handleRegisterLogInReject
+      )
+      .addMatcher(
+        isAnyOf(
+          authOperations.register.rejected,
+          authOperations.logIn.rejected
+        ),
+        handleRegisterLogInPending
       );
   },
 });

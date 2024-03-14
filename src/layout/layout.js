@@ -35,6 +35,7 @@ export default function Layout() {
   const handleSubmit = () => {
     dispatch(authOperations.logOut()).then(navigate("/"));
   };
+
   return (
     <>
       <MainContainer>

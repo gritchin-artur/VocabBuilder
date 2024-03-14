@@ -4,7 +4,6 @@ import toggle from "../../img/toggle.svg";
 
 export const RecommendPageContainer = styled.div`
   background: #f8f8f8;
-  height: 100vh;
   padding: 32px 16px;
 
   @media only screen and (min-width: 768px) {

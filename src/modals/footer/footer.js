@@ -17,7 +17,7 @@ export function Footer() {
       location.pathname.includes("/register") ||
       location.pathname.includes("/login")
     ) {
-      return setBackgroundColor("none");
+      return setBackgroundColor("#fcfcfc");
     } else {
       return setBackgroundColor("#85aa9f");
     }
@@ -26,10 +26,13 @@ export function Footer() {
   return (
     <footer
       style={{
-        paddingTop: "30px",
-        paddingLeft: "50px",
-        paddingBottom: "30px",
-        backgroundColor: backgroundColor,
+        // paddingTop: "30px",
+        // paddingLeft: "50px",
+        // paddingBottom: "30px",
+        // backgroundColor: backgroundColor,
+        position: "absolute",
+        left: "50px",
+        bottom: "10px",
       }}
     >
       <a

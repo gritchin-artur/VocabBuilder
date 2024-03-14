@@ -8,13 +8,15 @@ import correct from "../../img/correct.svg";
 import error from "../../img/error.svg";
 
 export const LogInPageContainer = styled.div`
+  width: 100%;
+  height: 100%;
+  padding-bottom: 50px;
   display: grid;
   justify-content: center;
 
   @media only screen and (min-width: 768px) {
     background-image: url(${vector});
     background-size: cover;
-    height: 100vh;
   }
 
   @media only screen and (min-width: 1440px) {
@@ -66,8 +68,8 @@ export const LogInPageContainer = styled.div`
       margin-top: 150px;
       padding: 40px 60px;
       border-radius: 30px;
-      max-width: 627px;
-      max-height: 591px;
+      width: 627px;
+      height: 591px;
     }
 
     @media only screen and (min-width: 1440px) {
@@ -164,7 +166,7 @@ export const LogInPageContainer = styled.div`
     }
 
     @media only screen and (min-width: 768px) {
-      margin-top: 0px;
+      margin-top: 220px;
       order: 3;
       & li {
         margin-right: 15px;
@@ -176,6 +178,7 @@ export const LogInPageContainer = styled.div`
     }
 
     @media only screen and (min-width: 1440px) {
+      margin-top: 0;
       grid-area: l;
     }
   }
