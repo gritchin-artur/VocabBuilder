@@ -5,7 +5,7 @@ import { ReactComponent as England } from "../../img/united kingdom.svg";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { openModalWellDone } from "../../redux/modals/modal-slice";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { answersWord } from "../../redux/data/data-operation";
 import { useNavigate } from "react-router-dom";
 
