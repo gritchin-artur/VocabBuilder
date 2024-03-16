@@ -19,7 +19,7 @@ p{
 }
 
 body {
-  
+  background: ${(props) => props.backgroundColor};
 }
 
 .NavLink,

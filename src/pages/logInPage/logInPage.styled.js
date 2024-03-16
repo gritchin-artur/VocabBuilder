@@ -129,7 +129,6 @@ export const LogInPageContainer = styled.div`
 
     &:focus {
       outline: none;
-      box-shadow: none;
     }
   }
 

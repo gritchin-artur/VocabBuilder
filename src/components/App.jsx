@@ -1,7 +1,7 @@
 import GlobalStyled from "createGlobalStyle/createGlobalStyle.styled";
-import { Suspense, lazy, useEffect } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { Toaster } from "react-hot-toast";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import authOperations from "../redux/auth/auth-operations";
 
@@ -24,6 +24,21 @@ export const App = () => {
   useEffect(() => {
     dispatch(authOperations.fetchCurrentUser());
   }, [dispatch]);
+
+  const location = useLocation();
+  const [backgroundColor, setBackgroundColor] = useState("");
+
+  useEffect(() => {
+    if (
+      location.pathname.includes("/dictionary") ||
+      location.pathname.includes("/recommend") ||
+      location.pathname.includes("/training")
+    ) {
+      setBackgroundColor("#f8f8f8");
+    } else {
+      setBackgroundColor("#fff");
+    }
+  }, [location]);
 
   return (
     <>
@@ -87,7 +102,7 @@ export const App = () => {
           </Routes>
         </Suspense>
       )}
-      <GlobalStyled />
+      <GlobalStyled backgroundColor={backgroundColor} />
       <Toaster />
     </>
   );

@@ -109,6 +109,7 @@ export const TrainingPageContainer = styled.div`
   }
 
   .LangueButton {
+    cursor: pointer;
     grid-area: b;
     display: flex;
     align-items: center;

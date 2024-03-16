@@ -87,10 +87,7 @@ const authSlice = createSlice({
         handleRegisterLogInReject
       )
       .addMatcher(
-        isAnyOf(
-          authOperations.register.rejected,
-          authOperations.logIn.rejected
-        ),
+        isAnyOf(authOperations.register.pending, authOperations.logIn.pending),
         handleRegisterLogInPending
       );
   },

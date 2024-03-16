@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const MainContainer = styled.div`
+  background: #fff;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -73,6 +74,7 @@ export const MainContainer = styled.div`
   }
 
   .ButtonBurger {
+    cursor: pointer;
     margin-left: 8px;
     @media only screen and (min-width: 1440px) {
       display: none;
