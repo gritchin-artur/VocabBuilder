@@ -6,10 +6,11 @@ import { Circle } from "rc-progress";
 import { openModalClickWord } from "../../redux/modals/modal-slice";
 import { TableList } from "./table.styled";
 import { addWord } from "../../redux/data/data-operation";
+import { useLocation } from "react-router-dom";
 
 export function Table({ data }) {
   const dispatch = useDispatch();
-
+  const location = useLocation();
   const handleClickWord = (event, word) => {
     const { clientX, clientY } = event;
     dispatch(
@@ -37,8 +38,7 @@ export function Table({ data }) {
           </th>
           <th className="TableHeaderItem">Category</th>
           <th className="TableHeaderItem">
-            {data.results.length !== 0 &&
-              (data.results[0].progress ? "Progress" : "")}
+            {location.pathname.includes("/dictionary") ? "Progress" : ""}
           </th>
         </tr>
       </thead>
