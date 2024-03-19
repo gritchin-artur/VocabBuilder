@@ -35,6 +35,12 @@ export default function DictionaryPage() {
     (state) => state.data.isLoadingStatistics
   );
 
+  useEffect(() => {
+    dispatch(ownWord());
+    dispatch(getAllCategories());
+    dispatch(statisticsWords());
+  }, [dispatch]);
+
   const delayedDispatchRef = useRef(
     debounce((formData) => {
       dispatch(ownWord(formData));
@@ -43,9 +49,7 @@ export default function DictionaryPage() {
 
   useEffect(() => {
     delayedDispatchRef.current(formData);
-    dispatch(getAllCategories());
-    dispatch(statisticsWords());
-  }, [dispatch, formData]);
+  }, [formData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;

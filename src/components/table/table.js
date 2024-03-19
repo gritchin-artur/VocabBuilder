@@ -42,7 +42,7 @@ export function Table({ data }) {
           </th>
         </tr>
       </thead>
-      {data.results.length !== 0 ? (
+      {data.results && data.results.length !== 0 ? (
         data.results.map((word, item) => (
           <tbody
             className={data.results[0].progress >= 0 ? "WordOfTable" : ""}

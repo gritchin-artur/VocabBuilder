@@ -12,7 +12,7 @@ export default function TrainingPage() {
   }, [dispatch]);
   return (
     <>
-      {tasks.tasks.length !== 0 ? (
+      {tasks.tasks !== undefined && tasks.tasks.length !== 0 ? (
         <AddWord tasks={tasks.tasks} />
       ) : (
         <Training />
