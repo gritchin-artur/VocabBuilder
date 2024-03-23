@@ -66,6 +66,13 @@ export default function AddWord({ tasks }) {
     });
   };
 
+  // const handleChancheInput = (task) => {
+  //   if (task === "en" || task === "ua") {
+  //     return 1;
+  //   }
+  //   return 2;
+  // };
+  // console.log(tasks);
   return (
     tasks.length > 0 && (
       <TrainingPageContainer>
@@ -103,7 +110,8 @@ export default function AddWord({ tasks }) {
               )}
 
               <div className="LangueName">
-                <Ukraine /> Ukrainian
+                <Ukraine />
+                Ukrainian
               </div>
             </div>
             <div className="InputContainer">
@@ -115,7 +123,8 @@ export default function AddWord({ tasks }) {
                 onChange={(e) => handleInputChange(e, "en")}
               />
               <div className="LangueName">
-                <England /> English
+                <England />
+                English
               </div>
             </div>
           </div>

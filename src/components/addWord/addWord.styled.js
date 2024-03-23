@@ -5,6 +5,7 @@ export const TrainingPageContainer = styled.div`
   width: 100%;
   height: 100vh;
   padding: 32px 16px;
+  box-sizing: border-box;
 
   @media only screen and (min-width: 768px) {
     padding: 64px 32px;
