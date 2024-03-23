@@ -24,6 +24,7 @@ export const ModalContainer = styled.div`
   }
 
   .ButtonYes {
+    cursor: pointer;
     text-align: center;
     border-radius: 30px;
     padding: 14px 65px;
@@ -34,9 +35,16 @@ export const ModalContainer = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #121417;
+
+    &:hover {
+      color: #fcfcfc;
+      background: #85aa9f;
+      border: 1px solid #d1d5db;
+    }
   }
 
   .ButtonNo {
+    cursor: pointer;
     text-align: center;
     border: 1px solid rgba(252, 252, 252, 0.4);
     border-radius: 30px;
@@ -49,5 +57,10 @@ export const ModalContainer = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #fcfcfc;
+
+    &:hover {
+      color: #85aa9f;
+      background: #fcfcfc;
+    }
   }
 `;

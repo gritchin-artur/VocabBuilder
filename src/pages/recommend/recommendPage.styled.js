@@ -158,6 +158,18 @@ export const RecommendPageContainer = styled.div`
     gap: 8px;
     cursor: pointer;
     color: #121417;
+
+    &:hover {
+      color: #85aa9f;
+    }
+
+    &:hover .IconButton {
+      path {
+        stroke: #686868;
+        transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
 
   .RadioButtonList {

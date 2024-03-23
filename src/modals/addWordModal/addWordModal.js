@@ -76,7 +76,7 @@ export function AddWordModal({ handleClickClose }) {
 
     onSubmit: (values) => {
       dispatch(createWord(values)).then((response) => {
-        !response.error && handleClickClose();
+        isNaN(response.payload) && handleClickClose();
       });
     },
   });

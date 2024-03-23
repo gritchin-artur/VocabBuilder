@@ -52,6 +52,7 @@ const AddWordSchema = Yup.object().shape({
   en: Yup.string().matches(EnWord, "Must be en letter").required("Required"),
   ua: Yup.string().matches(UaWord, "Must be ua letter").required("Required"),
   category: Yup.string().required("Required"),
+  isIrregular: Yup.boolean(),
 });
 
 const EditWordSchema = Yup.object().shape({

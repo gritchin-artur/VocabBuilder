@@ -144,6 +144,11 @@ export const LogInPageContainer = styled.div`
     line-height: 150%;
     color: #fcfcfc;
 
+    &:hover {
+      background: #fcfcfc;
+      color: #85aa9f;
+    }
+
     @media only screen and (min-width: 768px) {
       margin-top: 36px;
     }
@@ -191,6 +196,22 @@ export const LogInPageContainer = styled.div`
     @media only screen and (min-width: 768px) {
       font-size: 22px;
       line-height: 150%;
+    }
+  }
+
+  .NavLogIn {
+    justify-content: center;
+    display: flex;
+    margin-top: 32px;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 150%;
+    text-decoration: underline;
+    text-decoration-skip-ink: none;
+    color: rgba(18, 20, 23, 0.5);
+
+    &:hover {
+      color: #85aa9f;
     }
   }
 

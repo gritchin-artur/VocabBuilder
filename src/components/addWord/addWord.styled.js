@@ -186,10 +186,6 @@ export const TrainingPageContainer = styled.div`
     display: flex;
     justify-content: center;
 
-    &:focus {
-      color: #85aa9f;
-    }
-
     @media only screen and (min-width: 768px) {
       box-sizing: border-box;
       border: 1px solid #85aa9f;
@@ -202,9 +198,9 @@ export const TrainingPageContainer = styled.div`
       line-height: 156%;
       color: #85aa9f;
 
-      &:focus {
+      &:hover {
         background: #85aa9f;
-        color: #fcfcfc;
+        color: #f8f8f8;
       }
     }
   }

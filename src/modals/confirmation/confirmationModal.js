@@ -8,7 +8,7 @@ export function ConfirmationModal({ handleClickClose }) {
 
   const handleDeleteWord = () => {
     dispatch(deleteWord(clickWordId)).then((response) => {
-      !response.error && handleClickClose();
+      isNaN(response.payload) && handleClickClose();
     });
   };
   return (

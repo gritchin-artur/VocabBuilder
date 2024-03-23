@@ -12,6 +12,9 @@ export const getAllCategories = createAsyncThunk(
       token.set(persistedToken);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 404) {
         return toast.error("Service not found");
       }
@@ -33,6 +36,9 @@ export const statisticsWords = createAsyncThunk(
       token.set(persistedToken);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 404) {
         return toast.error("Service not found");
       }
@@ -61,6 +67,9 @@ export const ownWord = createAsyncThunk(
       token.set(persistedToken);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 404) {
         return toast.error("Service not found");
       }
@@ -83,6 +92,9 @@ export const createWord = createAsyncThunk(
       toast.success(`Succsess created  ${response.data.en}`);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 401) {
         return toast.error("Such a word exists");
       }
@@ -108,6 +120,9 @@ export const deleteWord = createAsyncThunk(
       toast.success(`Succsess delete  ${wordDelete.en}`);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 401) {
         return toast.error("This word not found");
       }
@@ -136,6 +151,9 @@ export const editWord = createAsyncThunk(
       toast.success(`Succsess edit  ${wordEdit.en}`);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 401) {
         return toast.error("This word not found");
       }
@@ -170,6 +188,9 @@ export const getAllWord = createAsyncThunk(
       token.set(persistedToken);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 404) {
         return toast.error("Service not found");
       }
@@ -183,7 +204,6 @@ export const getAllWord = createAsyncThunk(
 export const addWord = createAsyncThunk(
   "/words/add/",
   async (wordId, thunkAPI) => {
-    console.log(wordId);
     const state = thunkAPI.getState();
     const persistedToken = state.auth.token;
 
@@ -193,6 +213,9 @@ export const addWord = createAsyncThunk(
       toast.success(`Succsess add to own ${response.data.en}`);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 409) {
         return toast.error("The same word you already have!");
       }
@@ -220,6 +243,9 @@ export const tasksWords = createAsyncThunk(
       token.set(persistedToken);
       return response.data;
     } catch (error) {
+      if (error.response && error.response.status === 400) {
+        return toast.error("Opppsss something went wrong!");
+      }
       if (error.response && error.response.status === 404) {
         return toast.error("Service not found");
       }

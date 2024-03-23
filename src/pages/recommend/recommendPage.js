@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { RecommendPageContainer } from "./recommendPage.styled";
 import { ReactComponent as Switch } from "../../img/switch-horizontal.svg";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllCategories, getAllWord } from "../../redux/data/data-operation";
@@ -7,7 +8,6 @@ import { debounce } from "lodash";
 import { PageButtonList } from "components/pageButtonList/pageButtonList";
 import { NavLink } from "react-router-dom";
 import { Table } from "components/table/table";
-import { RecommendPageContainer } from "./recommendPage.styled";
 
 export default function RecommendPage() {
   const dispatch = useDispatch();
@@ -22,6 +22,10 @@ export default function RecommendPage() {
   const { categories } = useDictionaryHook();
   const allWords = useSelector((state) => state.data.allWords);
 
+  useEffect(() => {
+    dispatch(getAllCategories());
+  }, [dispatch]);
+
   const delayedDispatchRef = useRef(
     debounce((formData) => {
       dispatch(getAllWord(formData));
@@ -30,8 +34,7 @@ export default function RecommendPage() {
 
   useEffect(() => {
     delayedDispatchRef.current(formData);
-    dispatch(getAllCategories());
-  }, [dispatch, formData]);
+  }, [formData]);
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -82,6 +85,9 @@ export default function RecommendPage() {
               onChange={handleInputChange}
             />
             <ul className="dropdown">
+              <li className="ListItem" onClick={() => handleListItemClick("")}>
+                categories
+              </li>
               {categories &&
                 categories.map((item) => (
                   <li
@@ -105,7 +111,6 @@ export default function RecommendPage() {
                 name="regular"
                 type="radio"
                 onChange={() => handleIsIrregularClick(true)}
-                value={formData.isIrregular}
                 checked={formData.isIrregular === true}
               />
               Regular
@@ -117,7 +122,6 @@ export default function RecommendPage() {
                 name="reason"
                 type="radio"
                 onChange={() => handleIsIrregularClick(false)}
-                value={formData.isIrregular}
                 checked={formData.isIrregular === false}
               />
               Irregular
@@ -134,7 +138,7 @@ export default function RecommendPage() {
           <ul className="ButtonList">
             <li>
               <NavLink className="ButtonItem" to="/training">
-                Train oneself <Switch />
+                Train oneself <Switch className="IconButton" />
               </NavLink>
             </li>
           </ul>

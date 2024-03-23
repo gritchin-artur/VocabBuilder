@@ -26,13 +26,29 @@ export const MainContainer = styled.div`
     color: #121417;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
       background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
 
-    &:hover,
+    &:hover {
+      color: #85aa9f;
+    }
+
     &.active {
+      color: #f8f8f8;
+      transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    &.active::after {
+      content: "";
+      left: -20px;
+      bottom: -12px;
+      z-index: -1;
+      height: 15px;
+      width: 100%;
+      position: absolute;
       padding: 12px 20px;
       border-radius: 15px;
       background-color: #85aa9f;
-      color: #f8f8f8;
       transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
@@ -49,6 +65,23 @@ export const MainContainer = styled.div`
 
     text-decoration: none;
     color: inherit;
+
+    &:hover {
+      color: #85aa9f;
+    }
+
+    &:hover {
+      path {
+        stroke: #85aa9f;
+        fill: #85aa9f;
+      }
+      circle {
+        stroke: #85aa9f;
+        fill: none;
+        transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
   }
 
   .UserContainer {
@@ -76,6 +109,14 @@ export const MainContainer = styled.div`
   .ButtonBurger {
     cursor: pointer;
     margin-left: 8px;
+
+    &:hover {
+      line {
+        stroke: #85aa9f;
+        transition: stroke 250ms cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
     @media only screen and (min-width: 1440px) {
       display: none;
     }
@@ -96,5 +137,10 @@ export const MainContainer = styled.div`
     font-size: 14px;
     line-height: 156%;
     color: #fcfcfc;
+
+    &:hover {
+      color: #85aa9f;
+      background: #f8f8f8;
+    }
   }
 `;

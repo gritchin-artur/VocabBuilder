@@ -25,6 +25,12 @@ export const ContainerAddWordModal = styled.div`
     cursor: pointer;
     position: absolute;
     right: 18px;
+
+    &:hover {
+      path {
+        stroke: #121417;
+      }
+    }
   }
 
   .TextContainer {
@@ -251,6 +257,7 @@ export const ContainerAddWordModal = styled.div`
   }
 
   .ButtonAdd {
+    cursor: pointer;
     border-radius: 30px;
     padding: 12px 63px;
     width: 169px;
@@ -262,6 +269,12 @@ export const ContainerAddWordModal = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #121417;
+
+    &:hover {
+      background: #85aa9f;
+      color: #fcfcfc;
+      border: 1px solid #d1d5db;
+    }
 
     @media only screen and (min-width: 768px) {
       border-radius: 30px;
@@ -278,6 +291,7 @@ export const ContainerAddWordModal = styled.div`
   }
 
   .ButtonCancel {
+    cursor: pointer;
     border: 1px solid rgba(252, 252, 252, 0.4);
     border-radius: 30px;
     padding: 12px 45px;
@@ -289,6 +303,11 @@ export const ContainerAddWordModal = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #fcfcfc;
+
+    &:hover {
+      background: #fcfcfc;
+      color: #85aa9f;
+    }
 
     @media only screen and (min-width: 768px) {
       padding: 14px 92px;

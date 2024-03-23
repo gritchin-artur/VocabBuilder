@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import {
   answersWord,
+  createWord,
+  deleteWord,
   getAllCategories,
   getAllWord,
   ownWord,
@@ -21,6 +23,8 @@ const initialState = {
   isLoadingTasks: false,
   answers: [],
   isLoadingAnswers: false,
+  isDeleteWord: false,
+  isAddWord: false,
 };
 
 const handleGetAllCategoriesPending = (state, { payload }) => {
@@ -75,6 +79,30 @@ const handleAnswers = (state, { payload }) => {
   state.isLoadingAnswers = false;
 };
 
+const handleDeleteWordPending = (state, { payload }) => {
+  state.isDeleteWord = false;
+};
+
+const handleDeleteWordFulfilled = (state, { payload }) => {
+  state.isDeleteWord = true;
+};
+
+const handleDeleteWordRejected = (state, { payload }) => {
+  state.isDeleteWord = false;
+};
+
+const handleAddWordPending = (state, { payload }) => {
+  state.isAddWord = false;
+};
+
+const handleAddWordFulfilled = (state, { payload }) => {
+  state.isAddWord = true;
+};
+
+const handleAddWordRejected = (state, { payload }) => {
+  state.isAddWord = false;
+};
+
 const dataSlise = createSlice({
   name: "data",
   initialState,
@@ -93,7 +121,13 @@ const dataSlise = createSlice({
       .addCase(tasksWords.pending, handTasksWordsPending)
       .addCase(tasksWords.fulfilled, handTasksWords)
       .addCase(answersWord.pending, handleAnswersPending)
-      .addCase(answersWord.fulfilled, handleAnswers);
+      .addCase(answersWord.fulfilled, handleAnswers)
+      .addCase(deleteWord.pending, handleDeleteWordPending)
+      .addCase(deleteWord.fulfilled, handleDeleteWordFulfilled)
+      .addCase(deleteWord.rejected, handleDeleteWordRejected)
+      .addCase(createWord.pending, handleAddWordPending)
+      .addCase(createWord.fulfilled, handleAddWordFulfilled)
+      .addCase(createWord.rejected, handleAddWordRejected);
   },
 });
 

@@ -25,5 +25,12 @@ export const ClickWordContainer = styled.ul`
 
     font-weight: 500;
     font-size: 14px;
+
+    &:hover {
+      color: #85aa9f;
+      path {
+        stroke: #121417;
+      }
+    }
   }
 `;

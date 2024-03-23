@@ -22,6 +22,12 @@ export const ModalContainer = styled.div`
     cursor: pointer;
     position: absolute;
     right: 18px;
+
+    &:hover {
+      path {
+        stroke: #121417;
+      }
+    }
   }
 
   .Form {
@@ -99,6 +105,7 @@ export const ModalContainer = styled.div`
   }
 
   .ButtonAdd {
+    cursor: pointer;
     border-radius: 30px;
     padding: 12px 60px;
     width: 158px;
@@ -110,6 +117,12 @@ export const ModalContainer = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #121417;
+
+    &:hover {
+      color: #fcfcfc;
+      background: #85aa9f;
+      border: 1px solid #d1d5db;
+    }
 
     @media only screen and (min-width: 768px) {
       padding: 14px 101px;
@@ -136,6 +149,11 @@ export const ModalContainer = styled.div`
     font-size: 16px;
     line-height: 150%;
     color: #fcfcfc;
+
+    &:hover {
+      color: #85aa9f;
+      background: #fcfcfc;
+    }
 
     @media only screen and (min-width: 768px) {
       padding: 14px 92px;

@@ -145,6 +145,11 @@ export const RegisterPageContainer = styled.div`
     @media only screen and (min-width: 768px) {
       margin-top: 36px;
     }
+
+    &:hover {
+      color: #85aa9f;
+      background: #fcfcfc;
+    }
   }
 
   .NavLogIn {
@@ -157,6 +162,10 @@ export const RegisterPageContainer = styled.div`
     text-decoration: underline;
     text-decoration-skip-ink: none;
     color: rgba(18, 20, 23, 0.5);
+
+    &:hover {
+      color: #85aa9f;
+    }
   }
 
   .SkilsList {

@@ -4,7 +4,7 @@ import { SigninSchema } from "utils/validationSchemas";
 import { ShowRules } from "utils/showRules";
 import { useDispatch } from "react-redux";
 import authOperations from "../../redux/auth/auth-operations";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 export default function LogInPage() {
   const dispatch = useDispatch();
@@ -87,6 +87,9 @@ export default function LogInPage() {
             Login
           </button>
         </form>
+        <NavLink className="NavLogIn" to="/register">
+          Register
+        </NavLink>
       </div>
       <ul className="SkilsList">
         <li className="Skil">Word</li>

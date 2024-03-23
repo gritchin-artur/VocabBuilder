@@ -40,7 +40,7 @@ export default function Layout() {
     <>
       <MainContainer>
         <NavLink to="/" className="LogoContainer">
-          <Logo />
+          <Logo className="Logo" />
           <h2>VocabBuilder</h2>
         </NavLink>
         {userName && (

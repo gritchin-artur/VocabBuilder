@@ -21,6 +21,12 @@ export const ModalDiv = styled.div`
   .ButtonClose {
     cursor: pointer;
     background-image: url(${X});
+
+    &:hover {
+      path {
+        stroke: #121417;
+      }
+    }
   }
 
   .NavList {
@@ -37,6 +43,8 @@ export const ModalDiv = styled.div`
     color: #f8f8f8;
     transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1),
       background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    z-index: 1;
 
     &:hover,
     &.active {
