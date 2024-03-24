@@ -24,6 +24,12 @@ export const WellDoneContainer = styled.div`
     cursor: pointer;
     position: absolute;
     right: 18px;
+
+    &:hover {
+      path {
+        stroke: #121417;
+      }
+    }
   }
 
   .Title {
@@ -70,6 +76,20 @@ export const WellDoneContainer = styled.div`
     margin-top: 10px;
     display: grid;
     gap: 8px;
+  }
+
+  .CorrectAnswerList {
+    overflow: scroll;
+    max-height: 300px;
+
+    @media only screen and (min-width: 768px) {
+      max-height: 350px;
+    }
+  }
+
+  .MistakesList {
+    max-height: 170px;
+    overflow: auto;
   }
 
   .MistakesItem,

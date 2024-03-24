@@ -122,6 +122,10 @@ export const TrainingContainer = styled.div`
       padding: 14px;
       font-size: 18px;
       line-height: 156%;
+
+      &:hover {
+        border: 1px solid #85aa9f;
+      }
     }
   }
 

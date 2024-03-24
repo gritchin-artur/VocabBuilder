@@ -81,6 +81,28 @@ export function AddWordModal({ handleClickClose }) {
     },
   });
 
+  useEffect(() => {
+    if (values.isIrregular) {
+      if (!values.en.startsWith("to ")) {
+        handleChange({
+          target: {
+            name: "en",
+            value: "to " + values.en,
+          },
+        });
+      }
+    } else {
+      if (values.en.startsWith("to ")) {
+        handleChange({
+          target: {
+            name: "en",
+            value: values.en.substring(3),
+          },
+        });
+      }
+    }
+  }, [values.isIrregular, handleChange, values.en]);
+
   const { getInputAlert, getInputClass } = ShowRules(values, touched, errors);
 
   return (
@@ -126,10 +148,10 @@ export function AddWordModal({ handleClickClose }) {
               name="isIrregular"
               type="radio"
               onChange={() =>
-                handleChange({ target: { name: "isIrregular", value: true } })
+                handleChange({ target: { name: "isIrregular", value: false } })
               }
-              value={true}
-              checked={values.isIrregular === true}
+              value={false}
+              checked={values.isIrregular === false}
             />
             Regular
           </li>
@@ -140,10 +162,10 @@ export function AddWordModal({ handleClickClose }) {
               name="isIrregular"
               type="radio"
               onChange={() =>
-                handleChange({ target: { name: "isIrregular", value: false } })
+                handleChange({ target: { name: "isIrregular", value: true } })
               }
-              value={false}
-              checked={values.isIrregular === false}
+              value={true}
+              checked={values.isIrregular === true}
             />
             Irregular
           </li>
@@ -179,6 +201,7 @@ export function AddWordModal({ handleClickClose }) {
             onChange={handleChange}
             required
           />
+
           {getInputAlert("en")}
         </div>
 
