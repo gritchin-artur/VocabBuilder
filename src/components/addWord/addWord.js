@@ -48,7 +48,10 @@ export default function AddWord({ tasks }) {
         ua: tasks[wordItem + 1]?.ua || "",
         task: tasks[wordItem + 1]?.task,
       }));
-      setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
+
+      if (formTasks[formTasks.task] !== "") {
+        setAnswerTasks((prevTasks) => [...prevTasks, formTasks]);
+      }
     }
   };
 
@@ -58,16 +61,19 @@ export default function AddWord({ tasks }) {
 
   const handleSave = () => {
     handleSubmit();
-    const updatedAnswerTasks = [...answerTasks, formTasks];
+
+    const updatedAnswerTasks =
+      formTasks[formTasks.task] === ""
+        ? [...answerTasks, formTasks]
+        : answerTasks;
     dispatch(answersWord(updatedAnswerTasks)).then((response) => {
       isNaN(response.payload)
-        ? dispatch(openModalWellDone())
+        ? dispatch(openModalWellDone()) && navigate("/dictionary")
         : navigate("/dictionary");
     });
   };
 
   const handleInputEn = (task) => {
-    console.log(task);
     if (task === "en") {
       return 2;
     }
@@ -75,12 +81,30 @@ export default function AddWord({ tasks }) {
   };
 
   const handleInputUa = (task) => {
-    console.log(task);
     if (task === "ua") {
       return 2;
     }
     return 1;
   };
+
+  const validateEnglishInput = () => {
+    const englishWordPattern = /^[A-Za-z]*$/;
+    if (!englishWordPattern.test(formTasks.en.replace(" ", ""))) {
+      return <p style={{ color: "red" }}>Please enter only English letters</p>;
+    }
+  };
+
+  const validateUkrainianInput = () => {
+    const ukrainianWordPattern = /^[А-ЩЬЮЯҐЄІЇа-щьюяґєії]*$/;
+    if (!ukrainianWordPattern.test(formTasks.ua.replace(" ", ""))) {
+      return (
+        <p style={{ color: "red" }}>
+          Будь ласка, введіть лише українські літери
+        </p>
+      );
+    }
+  };
+
   return (
     tasks.length > 0 && (
       <TrainingPageContainer>
@@ -109,13 +133,15 @@ export default function AddWord({ tasks }) {
               style={{ order: handleInputUa(formTasks.task) }}
             >
               <input
+                name="ukrainian"
                 type="text"
                 className="Input"
                 placeholder="Введіть переклад"
                 value={formTasks.ua}
                 onChange={(e) => handleInputChange(e, "ua")}
               />
-              {tasks.length - 1 > wordItem && (
+              {validateUkrainianInput && validateUkrainianInput()}
+              {tasks.length > wordItem ? (
                 <div
                   className="LangueButton"
                   onClick={handleSubmit}
@@ -126,6 +152,8 @@ export default function AddWord({ tasks }) {
                 >
                   Next <Switch />
                 </div>
+              ) : (
+                handleSave()
               )}
 
               <div className="LangueName">
@@ -134,18 +162,21 @@ export default function AddWord({ tasks }) {
               </div>
             </div>
             <div
+              id="english"
               className="InputContainer"
               style={{ order: handleInputEn(formTasks.task) }}
             >
               <input
+                name="english"
                 type="text"
                 className="Input"
                 placeholder="Break in"
                 value={formTasks.en}
                 onChange={(e) => handleInputChange(e, "en")}
               />
+              {validateEnglishInput && validateEnglishInput()}
 
-              {tasks.length - 1 > wordItem && (
+              {tasks.length > wordItem ? (
                 <div
                   className="LangueButton"
                   onClick={handleSubmit}
@@ -156,6 +187,8 @@ export default function AddWord({ tasks }) {
                 >
                   Next <Switch />
                 </div>
+              ) : (
+                handleSave()
               )}
               <div className="LangueName">
                 <England />

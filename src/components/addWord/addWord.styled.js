@@ -118,6 +118,9 @@ export const TrainingPageContainer = styled.div`
     gap: 8px;
     margin-top: auto;
 
+    background: none;
+    border: none;
+
     &:hover {
       color: #85aa9f;
     }
