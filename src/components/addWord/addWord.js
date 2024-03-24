@@ -66,13 +66,21 @@ export default function AddWord({ tasks }) {
     });
   };
 
-  // const handleChancheInput = (task) => {
-  //   if (task === "en" || task === "ua") {
-  //     return 1;
-  //   }
-  //   return 2;
-  // };
-  // console.log(tasks);
+  const handleInputEn = (task) => {
+    console.log(task);
+    if (task === "en") {
+      return 2;
+    }
+    return 1;
+  };
+
+  const handleInputUa = (task) => {
+    console.log(task);
+    if (task === "ua") {
+      return 2;
+    }
+    return 1;
+  };
   return (
     tasks.length > 0 && (
       <TrainingPageContainer>
@@ -95,7 +103,11 @@ export default function AddWord({ tasks }) {
 
         <form className="Form">
           <div className="FormContainer">
-            <div id="ukrainian" className="InputContainer">
+            <div
+              id="ukrainian"
+              className="InputContainer"
+              style={{ order: handleInputUa(formTasks.task) }}
+            >
               <input
                 type="text"
                 className="Input"
@@ -104,7 +116,14 @@ export default function AddWord({ tasks }) {
                 onChange={(e) => handleInputChange(e, "ua")}
               />
               {tasks.length - 1 > wordItem && (
-                <div className="LangueButton" onClick={handleSubmit}>
+                <div
+                  className="LangueButton"
+                  onClick={handleSubmit}
+                  style={{
+                    display:
+                      handleInputUa(formTasks.task) === 1 ? "flex" : "none",
+                  }}
+                >
                   Next <Switch />
                 </div>
               )}
@@ -114,7 +133,10 @@ export default function AddWord({ tasks }) {
                 Ukrainian
               </div>
             </div>
-            <div className="InputContainer">
+            <div
+              className="InputContainer"
+              style={{ order: handleInputEn(formTasks.task) }}
+            >
               <input
                 type="text"
                 className="Input"
@@ -122,6 +144,19 @@ export default function AddWord({ tasks }) {
                 value={formTasks.en}
                 onChange={(e) => handleInputChange(e, "en")}
               />
+
+              {tasks.length - 1 > wordItem && (
+                <div
+                  className="LangueButton"
+                  onClick={handleSubmit}
+                  style={{
+                    display:
+                      handleInputEn(formTasks.task) === 1 ? "flex" : "none",
+                  }}
+                >
+                  Next <Switch />
+                </div>
+              )}
               <div className="LangueName">
                 <England />
                 English

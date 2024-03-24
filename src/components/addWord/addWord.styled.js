@@ -49,6 +49,7 @@ export const TrainingPageContainer = styled.div`
   }
 
   .FormContainer {
+    display: grid;
     @media only screen and (min-width: 768px) {
       border-radius: 15px;
       padding: 18px;
