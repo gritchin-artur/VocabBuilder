@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/VocabBuilder/static/css/main.7acaea2f.css",
-    "main.js": "/VocabBuilder/static/js/main.52165c9d.js",
-    "static/js/407.472bf1e6.chunk.js": "/VocabBuilder/static/js/407.472bf1e6.chunk.js",
+    "main.js": "/VocabBuilder/static/js/main.e811f40f.js",
+    "static/js/407.55de3f81.chunk.js": "/VocabBuilder/static/js/407.55de3f81.chunk.js",
     "static/js/806.74928a0c.chunk.js": "/VocabBuilder/static/js/806.74928a0c.chunk.js",
     "static/js/258.4df7f537.chunk.js": "/VocabBuilder/static/js/258.4df7f537.chunk.js",
     "static/js/332.c09c7bed.chunk.js": "/VocabBuilder/static/js/332.c09c7bed.chunk.js",
     "static/js/585.dbde00b5.chunk.js": "/VocabBuilder/static/js/585.dbde00b5.chunk.js",
     "static/js/873.32dc1022.chunk.js": "/VocabBuilder/static/js/873.32dc1022.chunk.js",
-    "static/js/438.1145d896.chunk.js": "/VocabBuilder/static/js/438.1145d896.chunk.js",
+    "static/js/438.df9f86ef.chunk.js": "/VocabBuilder/static/js/438.df9f86ef.chunk.js",
     "static/js/821.070e4d79.chunk.js": "/VocabBuilder/static/js/821.070e4d79.chunk.js",
     "static/js/997.c7a7b906.chunk.js": "/VocabBuilder/static/js/997.c7a7b906.chunk.js",
     "static/js/306.571fbe34.chunk.js": "/VocabBuilder/static/js/306.571fbe34.chunk.js",
@@ -40,14 +40,14 @@
     "static/media/Prev.svg": "/VocabBuilder/static/media/Prev.63fd235f4da6423ef0f8732e5e0563d3.svg",
     "static/media/Next.svg": "/VocabBuilder/static/media/Next.006d29148a11265dee03d84c6cd4dd7c.svg",
     "main.7acaea2f.css.map": "/VocabBuilder/static/css/main.7acaea2f.css.map",
-    "main.52165c9d.js.map": "/VocabBuilder/static/js/main.52165c9d.js.map",
-    "407.472bf1e6.chunk.js.map": "/VocabBuilder/static/js/407.472bf1e6.chunk.js.map",
+    "main.e811f40f.js.map": "/VocabBuilder/static/js/main.e811f40f.js.map",
+    "407.55de3f81.chunk.js.map": "/VocabBuilder/static/js/407.55de3f81.chunk.js.map",
     "806.74928a0c.chunk.js.map": "/VocabBuilder/static/js/806.74928a0c.chunk.js.map",
     "258.4df7f537.chunk.js.map": "/VocabBuilder/static/js/258.4df7f537.chunk.js.map",
     "332.c09c7bed.chunk.js.map": "/VocabBuilder/static/js/332.c09c7bed.chunk.js.map",
     "585.dbde00b5.chunk.js.map": "/VocabBuilder/static/js/585.dbde00b5.chunk.js.map",
     "873.32dc1022.chunk.js.map": "/VocabBuilder/static/js/873.32dc1022.chunk.js.map",
-    "438.1145d896.chunk.js.map": "/VocabBuilder/static/js/438.1145d896.chunk.js.map",
+    "438.df9f86ef.chunk.js.map": "/VocabBuilder/static/js/438.df9f86ef.chunk.js.map",
     "821.070e4d79.chunk.js.map": "/VocabBuilder/static/js/821.070e4d79.chunk.js.map",
     "997.c7a7b906.chunk.js.map": "/VocabBuilder/static/js/997.c7a7b906.chunk.js.map",
     "306.571fbe34.chunk.js.map": "/VocabBuilder/static/js/306.571fbe34.chunk.js.map",
@@ -56,6 +56,6 @@
   },
   "entrypoints": [
     "static/css/main.7acaea2f.css",
-    "static/js/main.52165c9d.js"
+    "static/js/main.e811f40f.js"
   ]
 }
