@@ -110,8 +110,8 @@ export default function RecommendPage() {
                 id="regular"
                 name="regular"
                 type="radio"
-                onChange={() => handleIsIrregularClick(true)}
-                checked={formData.isIrregular === true}
+                onChange={() => handleIsIrregularClick(false)}
+                checked={formData.isIrregular === false}
               />
               Regular
             </li>
@@ -121,8 +121,8 @@ export default function RecommendPage() {
                 id="reason"
                 name="reason"
                 type="radio"
-                onChange={() => handleIsIrregularClick(false)}
-                checked={formData.isIrregular === false}
+                onChange={() => handleIsIrregularClick(true)}
+                checked={formData.isIrregular === true}
               />
               Irregular
             </li>

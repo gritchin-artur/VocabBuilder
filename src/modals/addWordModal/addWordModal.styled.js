@@ -355,4 +355,24 @@ export const ContainerAddWordModal = styled.div`
       top: 54px;
     }
   }
+
+  .EnInputMistake {
+    position: absolute;
+    color: red;
+    top: 90px;
+    left: 20px;
+    font-size: 12px;
+    align-items: flex-start;
+    display: flex;
+
+    &::before {
+      content: url(${error});
+      display: inline-block;
+      margin-right: 5px;
+    }
+
+    @media only screen and (min-width: 768px) {
+      top: 54px;
+    }
+  }
 `;

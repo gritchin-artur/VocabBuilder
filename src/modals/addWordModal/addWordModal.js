@@ -75,33 +75,23 @@ export function AddWordModal({ handleClickClose }) {
     validationSchema: AddWordSchema,
 
     onSubmit: (values) => {
+      console.log(values);
       dispatch(createWord(values)).then((response) => {
         isNaN(response.payload) && handleClickClose();
       });
     },
   });
 
-  useEffect(() => {
-    if (values.isIrregular) {
-      if (!values.en.startsWith("to ")) {
-        handleChange({
-          target: {
-            name: "en",
-            value: "to " + values.en,
-          },
-        });
-      }
-    } else {
-      if (values.en.startsWith("to ")) {
-        handleChange({
-          target: {
-            name: "en",
-            value: values.en.substring(3),
-          },
-        });
+  const handleIrregular = () => {
+    if (values.isIrregular && values.category === "verb") {
+      const pattern = /^\w+-\w+-\w+$/;
+      if (!pattern.test(values.en)) {
+        return (
+          <p className="EnInputMistake">Must be example: "know-knew-known"</p>
+        );
       }
     }
-  }, [values.isIrregular, handleChange, values.en]);
+  };
 
   const { getInputAlert, getInputClass } = ShowRules(values, touched, errors);
 
@@ -202,7 +192,7 @@ export function AddWordModal({ handleClickClose }) {
             required
           />
 
-          {getInputAlert("en")}
+          {handleIrregular() ? handleIrregular() : getInputAlert("en")}
         </div>
 
         <ul className="ButtonList">
